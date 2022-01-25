@@ -122,53 +122,68 @@ v # You cannot mix types in a vector
 v <- c(x = 1, y = 2, z = 3) # Named vector
 v
 v['y']
+
+files <- list.files(path = "data_raw")
+files[1] # Character vector
+files[2]
+length(files) 
 ```
 
 ---
-`r chunk_reveal("logical", break_type = "auto", widths = c(2, 1), title = "# Logical comparisons")`
+`r chunk_reveal("lists", break_type = "auto", widths = c(2, 1), title = "# Lists")`
 
-```{r logical, include = FALSE}
-x <- 1
-x > 0
-x > 2
-x == 1
-x != 2
-!(x == x)
-"s" == "S"
-1 > 0 | 0 > 1
-1 > 0 & 0 > 1
+```{r lists, include = FALSE}
+lt <- list(x = 1, y = "3", z = 1:5)
+lt
+lt$z # Access named list elements with $
+lt[[1]] # Use double brackets to get list elements
+lt[[3]] <- 5:7
 
-# Element-wise logical statements
-x <- c(-1, 0, 1)
-x < 0
-x == 0
+# List of lists
+lt <- list(lt1 = lt, lt2 = lt, lt3 = lt)
+lt$lt1
 
-# Quickly test is a value is contained in a set
-1 %in% x
+model <- lm(height ~ mass, data = starwars)
+typeof(model)
+model$coefficients
 ```
-
 
 ---
-`r chunk_reveal("arrange", break_type = "rotate", float = "none", widths = c(5, 1), title = "## Arrange (sorting data)")`
-
-```{r arrange, include = FALSE}
-library(tidyverse) #loads dplyr
-ds <- starwars #loads built-in star wars database
-glimpse(ds) #ROTATE
-arrange(ds, name) #ROTATE
-arrange(ds, height) #ROTATE
-arrange(ds, desc(height), mass) #ROTATE
-arrange(ds, eye_color, hair_color) #ROTATE
+# Factors represent categories
+```{r}
+x <- c(1, 1, 2, 3, 1, 4)
+x <- factor(x, levels = c(1,2,3), labels = c("rarely", "neutral", "frequently"))
+x
 ```
+- levels restrict the possible set of values
+
+- levels are ordered, which carries forward to output, modeling, graphics, etc.
+
+- factors work as dummy codes; use as.numeric(factor) to treat as a continuous variable in models
+
 ---
-`r chunk_reveal("reassignment", break_type = "auto", left_assign = T, widths = c(1, 1), title = "# Reassign the transformations back to the tibble")`
+`r chunk_reveal("factors", break_type = "auto", widths = c(1, 1), title = "# Factors")`
 
-```{r reassignment, include = FALSE}
-ds <- select(ds, name, height, eye_color)
-ds <- arrange(ds, height, eye_color)
-ds <- filter(ds, height < 70)
+```{r factors, include = FALSE}
+ds <- starwars
+unique(ds$eye_color)
+ds <- ds %>% mutate(eye_f = factor(eye_color))
+fct_count(ds$eye_f, sort = T) %>% slice_head(n = 5)
+fct_count(ds$eye_f, prop = T) %>% slice_head(n = 5)
 ```
 
+---
+`r chunk_reveal("releveling", break_type = "rotate", float = "none", widths = c(5, 1), title = "# Setting factor levels")`
+
+```{r releveling, include = FALSE}
+ds <- ds %>% select(name, eye_f)
+ds #ROTATE
+ds %>% mutate(eye_f = factor(eye_f, levels = c("blue", "brown"))) #ROTATE
+ds %>% mutate(eye_f = factor(eye_f, levels = c("blue", "brown", "yellow"),
+                             labels = c("bl","br","yl"))) #ROTATE
+ds %>% mutate(eye_f = fct_lump(eye_f, n = 3)) #ROTATE
+
+```
 
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
