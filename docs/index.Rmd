@@ -173,16 +173,15 @@ fct_count(ds$eye_f, prop = T) %>% slice_head(n = 5)
 ```
 
 ---
-`r chunk_reveal("releveling", break_type = "rotate", float = "none", widths = c(5, 1), title = "# Setting factor levels")`
+`r chunk_reveal("releveling", break_type = "rotate", float = "none", widths = c(8, 1), title = "# Setting factor levels")`
 
 ```{r releveling, include = FALSE}
 ds <- ds %>% select(name, eye_f)
 ds #ROTATE
-ds %>% mutate(eye_f = factor(eye_f, levels = c("blue", "brown"))) #ROTATE
-ds %>% mutate(eye_f = factor(eye_f, levels = c("blue", "brown", "yellow"),
-                             labels = c("bl","br","yl"))) #ROTATE
-ds %>% mutate(eye_f = fct_lump(eye_f, n = 3)) #ROTATE
-
+ds %>% mutate(eye_f2 = factor(eye_f, levels = c("blue", "brown"))) #ROTATE
+ds %>% mutate(eye_f2 = factor(eye_f, levels = c("blue", "brown"), labels = c("bl","br"))) #ROTATE
+ds %>% mutate(eye_f2 = fct_lump(eye_f, n = 3)) #ROTATE
+ds %>% mutate(eye_type = fct_collapse(eye_f, human = c("blue", "brown"), nonhuman = c("yellow", "red"))) #ROTATE
 ```
 
 <!-- adjust font size and other formatting defs in this css code chunk -->

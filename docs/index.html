@@ -1525,7 +1525,7 @@ count: false
 
 ```r
 ds &lt;- ds %&gt;% select(name, eye_f)
-*ds %&gt;% mutate(eye_f = factor(eye_f, levels = c("blue", "brown")))
+*ds
 ```
 ]
  
@@ -1533,18 +1533,18 @@ ds &lt;- ds %&gt;% select(name, eye_f)
 
 ```
 # A tibble: 87 × 2
-   name               eye_f
-   &lt;chr&gt;              &lt;fct&gt;
- 1 Luke Skywalker     blue 
- 2 C-3PO              &lt;NA&gt; 
- 3 R2-D2              &lt;NA&gt; 
- 4 Darth Vader        &lt;NA&gt; 
- 5 Leia Organa        brown
- 6 Owen Lars          blue 
- 7 Beru Whitesun lars blue 
- 8 R5-D4              &lt;NA&gt; 
- 9 Biggs Darklighter  brown
-10 Obi-Wan Kenobi     &lt;NA&gt; 
+   name               eye_f    
+   &lt;chr&gt;              &lt;fct&gt;    
+ 1 Luke Skywalker     blue     
+ 2 C-3PO              yellow   
+ 3 R2-D2              red      
+ 4 Darth Vader        yellow   
+ 5 Leia Organa        brown    
+ 6 Owen Lars          blue     
+ 7 Beru Whitesun lars blue     
+ 8 R5-D4              red      
+ 9 Biggs Darklighter  brown    
+10 Obi-Wan Kenobi     blue-gray
 # … with 77 more rows
 ```
 ]
@@ -1557,26 +1557,26 @@ count: false
 
 ```r
 ds &lt;- ds %&gt;% select(name, eye_f)
-*ds %&gt;% mutate(eye_f = factor(eye_f, levels = c("blue", "brown")))
+*ds %&gt;% mutate(eye_f2 = factor(eye_f, levels = c("blue", "brown")))
 ```
 ]
  
 .panel2-releveling-rotate[
 
 ```
-# A tibble: 87 × 2
-   name               eye_f
-   &lt;chr&gt;              &lt;fct&gt;
- 1 Luke Skywalker     blue 
- 2 C-3PO              &lt;NA&gt; 
- 3 R2-D2              &lt;NA&gt; 
- 4 Darth Vader        &lt;NA&gt; 
- 5 Leia Organa        brown
- 6 Owen Lars          blue 
- 7 Beru Whitesun lars blue 
- 8 R5-D4              &lt;NA&gt; 
- 9 Biggs Darklighter  brown
-10 Obi-Wan Kenobi     &lt;NA&gt; 
+# A tibble: 87 × 3
+   name               eye_f     eye_f2
+   &lt;chr&gt;              &lt;fct&gt;     &lt;fct&gt; 
+ 1 Luke Skywalker     blue      blue  
+ 2 C-3PO              yellow    &lt;NA&gt;  
+ 3 R2-D2              red       &lt;NA&gt;  
+ 4 Darth Vader        yellow    &lt;NA&gt;  
+ 5 Leia Organa        brown     brown 
+ 6 Owen Lars          blue      blue  
+ 7 Beru Whitesun lars blue      blue  
+ 8 R5-D4              red       &lt;NA&gt;  
+ 9 Biggs Darklighter  brown     brown 
+10 Obi-Wan Kenobi     blue-gray &lt;NA&gt;  
 # … with 77 more rows
 ```
 ]
@@ -1589,26 +1589,90 @@ count: false
 
 ```r
 ds &lt;- ds %&gt;% select(name, eye_f)
-*ds %&gt;% mutate(eye_f = fct_lump(eye_f, n = 3))
+*ds %&gt;% mutate(eye_f2 = factor(eye_f, levels = c("blue", "brown"), labels = c("bl","br")))
 ```
 ]
  
 .panel2-releveling-rotate[
 
 ```
-# A tibble: 87 × 2
-   name               eye_f 
-   &lt;chr&gt;              &lt;fct&gt; 
- 1 Luke Skywalker     blue  
- 2 C-3PO              yellow
- 3 R2-D2              Other 
- 4 Darth Vader        yellow
- 5 Leia Organa        brown 
- 6 Owen Lars          blue  
- 7 Beru Whitesun lars blue  
- 8 R5-D4              Other 
- 9 Biggs Darklighter  brown 
-10 Obi-Wan Kenobi     Other 
+# A tibble: 87 × 3
+   name               eye_f     eye_f2
+   &lt;chr&gt;              &lt;fct&gt;     &lt;fct&gt; 
+ 1 Luke Skywalker     blue      bl    
+ 2 C-3PO              yellow    &lt;NA&gt;  
+ 3 R2-D2              red       &lt;NA&gt;  
+ 4 Darth Vader        yellow    &lt;NA&gt;  
+ 5 Leia Organa        brown     br    
+ 6 Owen Lars          blue      bl    
+ 7 Beru Whitesun lars blue      bl    
+ 8 R5-D4              red       &lt;NA&gt;  
+ 9 Biggs Darklighter  brown     br    
+10 Obi-Wan Kenobi     blue-gray &lt;NA&gt;  
+# … with 77 more rows
+```
+]
+
+---
+count: false
+ 
+# Setting factor levels
+.panel1-releveling-rotate[
+
+```r
+ds &lt;- ds %&gt;% select(name, eye_f)
+*ds %&gt;% mutate(eye_f2 = fct_lump(eye_f, n = 3))
+```
+]
+ 
+.panel2-releveling-rotate[
+
+```
+# A tibble: 87 × 3
+   name               eye_f     eye_f2
+   &lt;chr&gt;              &lt;fct&gt;     &lt;fct&gt; 
+ 1 Luke Skywalker     blue      blue  
+ 2 C-3PO              yellow    yellow
+ 3 R2-D2              red       Other 
+ 4 Darth Vader        yellow    yellow
+ 5 Leia Organa        brown     brown 
+ 6 Owen Lars          blue      blue  
+ 7 Beru Whitesun lars blue      blue  
+ 8 R5-D4              red       Other 
+ 9 Biggs Darklighter  brown     brown 
+10 Obi-Wan Kenobi     blue-gray Other 
+# … with 77 more rows
+```
+]
+
+---
+count: false
+ 
+# Setting factor levels
+.panel1-releveling-rotate[
+
+```r
+ds &lt;- ds %&gt;% select(name, eye_f)
+*ds %&gt;% mutate(eye_type = fct_collapse(eye_f, human = c("blue", "brown"), nonhuman = c("yellow", "red")))
+```
+]
+ 
+.panel2-releveling-rotate[
+
+```
+# A tibble: 87 × 3
+   name               eye_f     eye_type 
+   &lt;chr&gt;              &lt;fct&gt;     &lt;fct&gt;    
+ 1 Luke Skywalker     blue      human    
+ 2 C-3PO              yellow    nonhuman 
+ 3 R2-D2              red       nonhuman 
+ 4 Darth Vader        yellow    nonhuman 
+ 5 Leia Organa        brown     human    
+ 6 Owen Lars          blue      human    
+ 7 Beru Whitesun lars blue      human    
+ 8 R5-D4              red       nonhuman 
+ 9 Biggs Darklighter  brown     human    
+10 Obi-Wan Kenobi     blue-gray blue-gray
 # … with 77 more rows
 ```
 ]
@@ -1616,7 +1680,7 @@ ds &lt;- ds %&gt;% select(name, eye_f)
 &lt;style&gt;
 .panel1-releveling-rotate {
   color: black;
-  width: 81.6666666666667%;
+  width: 87.1111111111111%;
   hight: 32%;
   float: none;
   padding-left: 1%;
@@ -1624,7 +1688,7 @@ ds &lt;- ds %&gt;% select(name, eye_f)
 }
 .panel2-releveling-rotate {
   color: black;
-  width: 16.3333333333333%;
+  width: 10.8888888888889%;
   hight: 32%;
   float: none;
   padding-left: 1%;
