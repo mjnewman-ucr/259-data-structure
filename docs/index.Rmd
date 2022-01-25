@@ -184,6 +184,16 @@ ds %>% mutate(eye_f2 = fct_lump(eye_f, n = 3)) #ROTATE
 ds %>% mutate(eye_type = fct_collapse(eye_f, human = c("blue", "brown"), nonhuman = c("yellow", "red"))) #ROTATE
 ```
 
+---
+`r chunk_reveal("reordering", break_type = "rotate", float = "none", widths = c(8, 1), title = "# Reordering factor levels")`
+
+```{r reordering, include = FALSE}
+fct_count(ds$eye_f) #ROTATE
+fct_count(fct_rev(ds$eye_f)) #ROTATE
+fct_count(fct_infreq(ds$eye_f)) #ROTATE
+fct_count(factor(ds$eye_f, levels = c("red", "brown", "blue"))) #ROTATE
+```
+
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
 .remark-code{line-height: 1; font-size: 70%}

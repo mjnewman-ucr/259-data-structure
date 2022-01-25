@@ -1708,6 +1708,142 @@ ds &lt;- ds %&gt;% select(name, eye_f)
 
 
 
+---
+count: false
+ 
+# Reordering factor levels
+.panel1-reordering-rotate[
+
+```r
+*fct_count(ds$eye_f)
+```
+]
+ 
+.panel2-reordering-rotate[
+
+```
+# A tibble: 15 × 2
+   f                 n
+   &lt;fct&gt;         &lt;int&gt;
+ 1 black            10
+ 2 blue             19
+ 3 blue-gray         1
+ 4 brown            21
+ 5 dark              1
+ 6 gold              1
+ 7 green, yellow     1
+ 8 hazel             3
+ 9 orange            8
+10 pink              1
+11 red               5
+12 red, blue         1
+13 unknown           3
+14 white             1
+15 yellow           11
+```
+]
+
+---
+count: false
+ 
+# Reordering factor levels
+.panel1-reordering-rotate[
+
+```r
+*fct_count(fct_infreq(ds$eye_f))
+```
+]
+ 
+.panel2-reordering-rotate[
+
+```
+# A tibble: 15 × 2
+   f                 n
+   &lt;fct&gt;         &lt;int&gt;
+ 1 brown            21
+ 2 blue             19
+ 3 yellow           11
+ 4 black            10
+ 5 orange            8
+ 6 red               5
+ 7 hazel             3
+ 8 unknown           3
+ 9 blue-gray         1
+10 dark              1
+11 gold              1
+12 green, yellow     1
+13 pink              1
+14 red, blue         1
+15 white             1
+```
+]
+
+---
+count: false
+ 
+# Reordering factor levels
+.panel1-reordering-rotate[
+
+```r
+*fct_count(fct_rev(ds$eye_f))
+```
+]
+ 
+.panel2-reordering-rotate[
+
+```
+# A tibble: 15 × 2
+   f                 n
+   &lt;fct&gt;         &lt;int&gt;
+ 1 yellow           11
+ 2 white             1
+ 3 unknown           3
+ 4 red, blue         1
+ 5 red               5
+ 6 pink              1
+ 7 orange            8
+ 8 hazel             3
+ 9 green, yellow     1
+10 gold              1
+11 dark              1
+12 brown            21
+13 blue-gray         1
+14 blue             19
+15 black            10
+```
+]
+
+&lt;style&gt;
+.panel1-reordering-rotate {
+  color: black;
+  width: 87.1111111111111%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-reordering-rotate {
+  color: black;
+  width: 10.8888888888889%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-reordering-rotate {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
 &lt;!-- adjust font size and other formatting defs in this css code chunk --&gt;
 &lt;style type="text/css"&gt;
 .remark-code{line-height: 1; font-size: 70%}
