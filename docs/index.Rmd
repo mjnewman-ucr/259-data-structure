@@ -194,6 +194,41 @@ fct_count(fct_infreq(ds$eye_f)) #ROTATE
 fct_count(factor(ds$eye_f, levels = c("red", "brown", "blue"))) #ROTATE
 ```
 
+---
+#Why do data need to be tidied?
+
+- Data files are often created without the foresight of how they will be read by computers
+- Creators prioritize making things human-readable at the expense of making data machine-readable
+- Tidy data makes programming more convenient
+  * Analysis and graphing functions in R (e.g., lm, lmer, ggplot) expect data in long format
+- You may need to switch formats to fit data to different requirements or to output data for publication (tables)
+
+---
+#Tidy data (Wickham, 2014)
+
+- Each variable is a column
+  * A variable means "all values that measure the same underlying attribute"
+- Each observation is a row
+  * Observation means unit for which all variables are measured (e.g., person, session, trial)
+- Each type of observational unit is a separate table
+  * Participant questionnaire vs. trial-by-trial outcomes
+
+---
+#Types of un-tidy data: Column names are variables
+- Income level can’t be made a factor to use in a model
+- Challenging to summarize, each income level needs to be treated as a separate variable
+- Can't use filter to subset each kind of observation
+```{r}
+relig_income %>% slice_head(n = 5)
+```
+
+---
+#Solution: tidyr's pivot_longer() function
+
+```{r}
+relig_income %>% pivot_longer(-religion, names_to = "income", values_to = "count")
+```
+
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
 .remark-code{line-height: 1; font-size: 70%}

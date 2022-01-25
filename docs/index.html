@@ -1750,6 +1750,41 @@ count: false
 .panel1-reordering-rotate[
 
 ```r
+*fct_count(fct_rev(ds$eye_f))
+```
+]
+ 
+.panel2-reordering-rotate[
+
+```
+# A tibble: 15 × 2
+   f                 n
+   &lt;fct&gt;         &lt;int&gt;
+ 1 yellow           11
+ 2 white             1
+ 3 unknown           3
+ 4 red, blue         1
+ 5 red               5
+ 6 pink              1
+ 7 orange            8
+ 8 hazel             3
+ 9 green, yellow     1
+10 gold              1
+11 dark              1
+12 brown            21
+13 blue-gray         1
+14 blue             19
+15 black            10
+```
+]
+
+---
+count: false
+ 
+# Reordering factor levels
+.panel1-reordering-rotate[
+
+```r
 *fct_count(fct_infreq(ds$eye_f))
 ```
 ]
@@ -1785,31 +1820,20 @@ count: false
 .panel1-reordering-rotate[
 
 ```r
-*fct_count(fct_rev(ds$eye_f))
+*fct_count(factor(ds$eye_f, levels = c("red", "brown", "blue")))
 ```
 ]
  
 .panel2-reordering-rotate[
 
 ```
-# A tibble: 15 × 2
-   f                 n
-   &lt;fct&gt;         &lt;int&gt;
- 1 yellow           11
- 2 white             1
- 3 unknown           3
- 4 red, blue         1
- 5 red               5
- 6 pink              1
- 7 orange            8
- 8 hazel             3
- 9 green, yellow     1
-10 gold              1
-11 dark              1
-12 brown            21
-13 blue-gray         1
-14 blue             19
-15 black            10
+# A tibble: 4 × 2
+  f         n
+  &lt;fct&gt; &lt;int&gt;
+1 red       5
+2 brown    21
+3 blue     19
+4 &lt;NA&gt;     42
 ```
 ]
 
@@ -1844,6 +1868,48 @@ count: false
 
 
 
+---
+#Why do data need to be tidied?
+
+- Data files are often created without the foresight of how they will be read by computers
+- Creators prioritize making things human-readable at the expense of making data machine-readable
+- Tidy data makes programming more convenient
+  * Analysis and graphing functions in R (e.g., lm, lmer, ggplot) expect data in long format
+- You may need to switch formats to fit data to different requirements or to output data for publication (tables)
+
+---
+#Tidy data (Wickham, 2014)
+
+- Each variable is a column
+  * A variable means "all values that measure the same underlying attribute"
+- Each observation is a row
+  * Observation means unit for which all variables are measured (e.g., person, session, trial)
+- Each type of observational unit is a separate table
+  * Participant questionnaire vs. trial-by-trial outcomes
+
+---
+#Types of un-tidy data: Column names are variables
+- Income level can’t be made a factor to use in a model
+- Challenging to summarize, each income level needs to be treated as a separate variable
+- Need to use different verbs to subset observations (filter for religion, select for income)
+
+```r
+relig_income %&gt;% slice_head(n = 5)
+```
+
+```
+# A tibble: 5 × 11
+  religion  `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`
+  &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+1 Agnostic       27        34        60        81        76       137        122
+2 Atheist        12        27        37        52        35        70         73
+3 Buddhist       27        21        30        34        33        58         62
+4 Catholic      418       617       732       670       638      1116        949
+5 Don’t kn…      15        14        15        11        10        35         21
+# … with 3 more variables: $100-150k &lt;dbl&gt;, &gt;150k &lt;dbl&gt;,
+#   Don't know/refused &lt;dbl&gt;
+```
+  
 &lt;!-- adjust font size and other formatting defs in this css code chunk --&gt;
 &lt;style type="text/css"&gt;
 .remark-code{line-height: 1; font-size: 70%}
