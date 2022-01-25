@@ -85,15 +85,15 @@ library(lubridate) #install if needed
 # What packages do we need?
 
 - Default tidyverse
-  * ``ggplot2``: graphing
-  * ``tibble``: use tibble-style dataframes
-  * ``tidyr``: shaping tibbles and columns
-  * ``purrr``: tools for automation
-  * ``dplyr``: selecting, filtering, and transforming dataframes
-  * ``stringr``: functions for manipulating strings
-  * ``forcats``: functions for manipulating factors
+  * `ggplot2`: graphing
+  * `tibble`: use tibble-style dataframes
+  * `tidyr`: shaping tibbles and columns
+  * `purrr`: tools for automation
+  * `dplyr`: selecting, filtering, and transforming dataframes
+  * `stringr`: functions for manipulating strings
+  * `forcats`: functions for manipulating factors
 - Extras
-  * ``lubridate``: functions for manipulating dates
+  * `lubridate`: functions for manipulating dates
 
 ---
 # Vectors and lists: Collections of values
@@ -102,23 +102,26 @@ library(lubridate) #install if needed
   * Character vectors,  `c("Hello", "Goodbye")`
   * Logical vectors, `c(T, T, T, F, T, F)`
   * Vector items can be named `c(x = 1, y = 2)`
-- Lists are type-heterogenous
+- Lists are type-heterogeneous
   * Mix types, `list("1", 1, TRUE, 1:5)`
   * Tibbles are lists of vectors/lists of the same length
 
 ---
-`r chunk_reveal("vectors", break_type = "auto", widths = c(2, 1), title = "# Data types")`
+`r chunk_reveal("vectors", break_type = "auto", widths = c(2, 1), title = "# Vectors")`
 
 ```{r vectors, include = FALSE}
 v <- c(1, 2, 3, 4, 5)
 v
 typeof(v)
 length(v)
-v[1] #Use brackets to access a vector element
+v[1] # Use brackets to access a vector element
 v[3]
-v <- c(v, 6, 7, 8) #use c to add items
+v <- c(v, 6, 7, 8) # use c to add items
 v <- c(1, 2, 3, "4", "5", "6") 
-v #You cannot mix types in a vector
+v # You cannot mix types in a vector
+v <- c(x = 1, y = 2, z = 3) # Named vector
+v
+v['y']
 ```
 
 ---
@@ -144,20 +147,6 @@ x == 0
 1 %in% x
 ```
 
----
-# How do we use logical statements?
-
-- One common way is through the `ifelse()` command?
-
-- `ifelse(LOGICAL STATEMENT, DO IF TRUE, DO IF FALSE)`
-
-```{r}
-x <- c(0, 1, 2, 3, NA)
-ifelse(NA %in% x, "x contains a missing value", "x does not contain a missing value")
-
-x <- c(0, 1, 2, 3)
-ifelse(NA %in% x, "x contains a missing value", "x does not contain a missing value")
-```
 
 ---
 `r chunk_reveal("arrange", break_type = "rotate", float = "none", widths = c(5, 1), title = "## Arrange (sorting data)")`

@@ -62,12 +62,13 @@ class: center, middle, inverse, title-slide
 - .brand-red[Factor]
 
 - .brand-red[Vectors and lists]
+
 ---
 # What packages do we need?
 
 
 ```r
-library(tidyverse, warn.conflicts = FALSE)
+library(tidyverse)
 ```
 
 ```
@@ -88,61 +89,96 @@ x dplyr::lag()    masks stats::lag()
 ```
 
 ```r
-#install.packages(lubridate)
-library(lubridate, warn.conflicts = FALSE)
+library(lubridate) #install if needed
 ```
+
+```
+
+Attaching package: 'lubridate'
+```
+
+```
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+```
+
+---
+# What packages do we need?
+
+- Default tidyverse
+  * `ggplot2`: graphing
+  * `tibble`: use tibble-style dataframes
+  * `tidyr`: shaping tibbles and columns
+  * `purrr`: tools for automation
+  * `dplyr`: selecting, filtering, and transforming dataframes
+  * `stringr`: functions for manipulating strings
+  * `forcats`: functions for manipulating factors
+- Extras
+  * `lubridate`: functions for manipulating dates
+
+---
+# Vectors and lists: Collections of values
+- Vectors are type-homogeneous
+  * Numeric vectors, `c(1,2,3,4,5)`, `1:5`
+  * Character vectors,  `c("Hello", "Goodbye")`
+  * Logical vectors, `c(T, T, T, F, T, F)`
+  * Vector items can be named `c(x = 1, y = 2)`
+- Lists are type-heterogeneous
+  * Mix types, `list("1", 1, TRUE, 1:5)`
+  * Tibbles are lists of vectors/lists of the same length
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-*x &lt;- 1
+*v &lt;- c(1, 2, 3, 4, 5)
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-*x 
+v &lt;- c(1, 2, 3, 4, 5)
+*v 
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-*typeof(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+*typeof(v)
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -153,21 +189,21 @@ x
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-*is.numeric(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+*length(v)
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -175,29 +211,29 @@ typeof(x)
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-*is.character(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+*v[1]  # Use brackets to access a vector element
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -205,34 +241,34 @@ is.numeric(x)
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 
 ```
-[1] FALSE
+[1] 1
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-*as.character(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+v[1]  # Use brackets to access a vector element
+*v[3]
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -240,39 +276,39 @@ is.character(x)
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 
 ```
-[1] FALSE
+[1] 1
 ```
 
 ```
-[1] "1"
+[1] 3
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-*x + 1
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+v[1]  # Use brackets to access a vector element
+v[3]
+*v &lt;- c(v, 6, 7, 8)  # use c to add items
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -280,45 +316,40 @@ as.character(x)
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 
 ```
-[1] FALSE
+[1] 1
 ```
 
 ```
-[1] "1"
-```
-
-```
-[1] 2
+[1] 3
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-x + 1
-
-*x &lt;- "data.csv"
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+v[1]  # Use brackets to access a vector element
+v[3]
+v &lt;- c(v, 6, 7, 8)  # use c to add items
+*v &lt;- c(1, 2, 3, "4", "5", "6")
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -326,46 +357,41 @@ x + 1
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 
 ```
-[1] FALSE
+[1] 1
 ```
 
 ```
-[1] "1"
-```
-
-```
-[1] 2
+[1] 3
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-x + 1
-
-x &lt;- "data.csv"
-*typeof(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+v[1]  # Use brackets to access a vector element
+v[3]
+v &lt;- c(v, 6, 7, 8)  # use c to add items
+v &lt;- c(1, 2, 3, "4", "5", "6")
+*v  # You cannot mix types in a vector
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -373,51 +399,46 @@ x &lt;- "data.csv"
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 
 ```
-[1] FALSE
+[1] 1
 ```
 
 ```
-[1] "1"
+[1] 3
 ```
 
 ```
-[1] 2
-```
-
-```
-[1] "character"
+[1] "1" "2" "3" "4" "5" "6"
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-x + 1
-
-x &lt;- "data.csv"
-typeof(x)
-*is.numeric(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+v[1]  # Use brackets to access a vector element
+v[3]
+v &lt;- c(v, 6, 7, 8)  # use c to add items
+v &lt;- c(1, 2, 3, "4", "5", "6")
+v  # You cannot mix types in a vector
+*v &lt;- c(x = 1, y = 2, z = 3)  # Named vector
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -425,56 +446,47 @@ typeof(x)
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 
 ```
-[1] FALSE
+[1] 1
 ```
 
 ```
-[1] "1"
+[1] 3
 ```
 
 ```
-[1] 2
-```
-
-```
-[1] "character"
-```
-
-```
-[1] FALSE
+[1] "1" "2" "3" "4" "5" "6"
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-x + 1
-
-x &lt;- "data.csv"
-typeof(x)
-is.numeric(x)
-*is.character(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+v[1]  # Use brackets to access a vector element
+v[3]
+v &lt;- c(v, 6, 7, 8)  # use c to add items
+v &lt;- c(1, 2, 3, "4", "5", "6")
+v  # You cannot mix types in a vector
+v &lt;- c(x = 1, y = 2, z = 3)  # Named vector
+*v 
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -482,61 +494,53 @@ is.numeric(x)
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
 
 ```
-[1] FALSE
+[1] 1
 ```
 
 ```
-[1] "1"
+[1] 3
 ```
 
 ```
-[1] 2
+[1] "1" "2" "3" "4" "5" "6"
 ```
 
 ```
-[1] "character"
-```
-
-```
-[1] FALSE
-```
-
-```
-[1] TRUE
+x y z 
+1 2 3 
 ```
 ]
 
 ---
 count: false
  
-# Data types
-.panel1-types-auto[
+# Vectors
+.panel1-vectors-auto[
 
 ```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-x + 1
-
-x &lt;- "data.csv"
-typeof(x)
-is.numeric(x)
-is.character(x)
-*as.numeric(x)
+v &lt;- c(1, 2, 3, 4, 5)
+v
+typeof(v)
+length(v)
+v[1]  # Use brackets to access a vector element
+v[3]
+v &lt;- c(v, 6, 7, 8)  # use c to add items
+v &lt;- c(1, 2, 3, "4", "5", "6")
+v  # You cannot mix types in a vector
+v &lt;- c(x = 1, y = 2, z = 3)  # Named vector
+v
+*v['y']
 ```
 ]
  
-.panel2-types-auto[
+.panel2-vectors-auto[
 
 ```
-[1] 1
+[1] 1 2 3 4 5
 ```
 
 ```
@@ -544,179 +548,34 @@ is.character(x)
 ```
 
 ```
-[1] TRUE
+[1] 5
 ```
-
-```
-[1] FALSE
-```
-
-```
-[1] "1"
-```
-
-```
-[1] 2
-```
-
-```
-[1] "character"
-```
-
-```
-[1] FALSE
-```
-
-```
-[1] TRUE
-```
-
-```
-[1] NA
-```
-]
-
----
-count: false
- 
-# Data types
-.panel1-types-auto[
-
-```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-x + 1
-
-x &lt;- "data.csv"
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.numeric(x)
-*#"data_raw" + x  #"data_raw" + x
-```
-]
- 
-.panel2-types-auto[
 
 ```
 [1] 1
 ```
 
 ```
-[1] "double"
+[1] 3
 ```
 
 ```
-[1] TRUE
+[1] "1" "2" "3" "4" "5" "6"
 ```
 
 ```
-[1] FALSE
+x y z 
+1 2 3 
 ```
 
 ```
-[1] "1"
-```
-
-```
-[1] 2
-```
-
-```
-[1] "character"
-```
-
-```
-[1] FALSE
-```
-
-```
-[1] TRUE
-```
-
-```
-[1] NA
-```
-]
-
----
-count: false
- 
-# Data types
-.panel1-types-auto[
-
-```r
-x &lt;- 1
-x
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.character(x)
-x + 1
-
-x &lt;- "data.csv"
-typeof(x)
-is.numeric(x)
-is.character(x)
-as.numeric(x)
-#"data_raw" + x  #"data_raw" + x
-*paste0("data_raw/",x)
-```
-]
- 
-.panel2-types-auto[
-
-```
-[1] 1
-```
-
-```
-[1] "double"
-```
-
-```
-[1] TRUE
-```
-
-```
-[1] FALSE
-```
-
-```
-[1] "1"
-```
-
-```
-[1] 2
-```
-
-```
-[1] "character"
-```
-
-```
-[1] FALSE
-```
-
-```
-[1] TRUE
-```
-
-```
-[1] NA
-```
-
-```
-[1] "data_raw/data.csv"
+y 
+2 
 ```
 ]
 
 &lt;style&gt;
-.panel1-types-auto {
+.panel1-vectors-auto {
   color: black;
   width: 65.3333333333333%;
   hight: 32%;
@@ -724,7 +583,7 @@ as.numeric(x)
   padding-left: 1%;
   font-size: 80%
 }
-.panel2-types-auto {
+.panel2-vectors-auto {
   color: black;
   width: 32.6666666666667%;
   hight: 32%;
@@ -732,7 +591,7 @@ as.numeric(x)
   padding-left: 1%;
   font-size: 80%
 }
-.panel3-types-auto {
+.panel3-vectors-auto {
   color: black;
   width: NA%;
   hight: 33%;
@@ -1344,31 +1203,6 @@ x == 0
 
 
 
----
-# How do we use logical statements?
-
-- One common way is through the `ifelse()` command?
-
-- `ifelse(LOGICAL STATEMENT, DO IF TRUE, DO IF FALSE)`
-
-
-```r
-x &lt;- c(0, 1, 2, 3, NA)
-ifelse(NA %in% x, "x contains a missing value", "x does not contain a missing value")
-```
-
-```
-[1] "x contains a missing value"
-```
-
-```r
-x &lt;- c(0, 1, 2, 3)
-ifelse(NA %in% x, "x contains a missing value", "x does not contain a missing value")
-```
-
-```
-[1] "x does not contain a missing value"
-```
 
 ---
 count: false
