@@ -1891,7 +1891,7 @@ count: false
 #Types of un-tidy data: Column names are variables
 - Income level can’t be made a factor to use in a model
 - Challenging to summarize, each income level needs to be treated as a separate variable
-- Need to use different verbs to subset observations (filter for religion, select for income)
+- Can't use filter to subset each kind of observation
 
 ```r
 relig_income %&gt;% slice_head(n = 5)
@@ -1909,7 +1909,152 @@ relig_income %&gt;% slice_head(n = 5)
 # … with 3 more variables: $100-150k &lt;dbl&gt;, &gt;150k &lt;dbl&gt;,
 #   Don't know/refused &lt;dbl&gt;
 ```
-  
+
+---
+#Solution: tidyr's pivot_longer() function
+
+
+```r
+relig_income %&gt;% pivot_longer(cols = -religion, names_to = "income", values_to = "count")
+```
+
+```
+# A tibble: 180 × 3
+   religion income             count
+   &lt;chr&gt;    &lt;chr&gt;              &lt;dbl&gt;
+ 1 Agnostic &lt;$10k                 27
+ 2 Agnostic $10-20k               34
+ 3 Agnostic $20-30k               60
+ 4 Agnostic $30-40k               81
+ 5 Agnostic $40-50k               76
+ 6 Agnostic $50-75k              137
+ 7 Agnostic $75-100k             122
+ 8 Agnostic $100-150k            109
+ 9 Agnostic &gt;150k                 84
+10 Agnostic Don't know/refused    96
+# … with 170 more rows
+```
+
+---
+count: false
+ 
+
+.panel1-pivotlong-rotate[
+
+```r
+ds &lt;- read_csv('data_cleaned/vocab.csv') %&gt;%
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "12")
+*ds %&gt;% print(n = 20)
+```
+]
+ 
+.panel2-pivotlong-rotate[
+
+```
+# A tibble: 51 × 27
+   id    dob        `12`    `12.5` `13`  `13.5` `14`  `14.5`  `15`  `15.5` `16` 
+   &lt;chr&gt; &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;lgl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1 Jonah 2017-08-30 book    dad    NA    cat    baby  socks/… bana… cheese shoes
+ 2 Jonah 2017-08-30 ball    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  dog (a… llama turkey berry
+ 3 Jonah 2017-08-30 bye bye &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  beep   hi   
+ 4 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   diap…
+ 5 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   teeth
+ 6 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   uhoh 
+ 7 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+ 8 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+ 9 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+10 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+11 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+12 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+13 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+14 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+15 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+16 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+17 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+18 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+19 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+20 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
+# … with 31 more rows, and 16 more variables: 16.5 &lt;chr&gt;, 17 &lt;chr&gt;, 17.5 &lt;chr&gt;,
+#   18 &lt;chr&gt;, 18.5 &lt;chr&gt;, 19 &lt;chr&gt;, 19.5 &lt;chr&gt;, 20 &lt;chr&gt;, 20.5 &lt;chr&gt;, 21 &lt;chr&gt;,
+#   21.5 &lt;chr&gt;, 22 &lt;chr&gt;, 22.5 &lt;chr&gt;, 23 &lt;chr&gt;, 23.5 &lt;chr&gt;, 24 &lt;chr&gt;
+```
+]
+
+---
+count: false
+ 
+
+.panel1-pivotlong-rotate[
+
+```r
+ds &lt;- read_csv('data_cleaned/vocab.csv') %&gt;%
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "12")
+*ds %&gt;% pivot_longer(cols = -(id:dob), names_to = "age", values_to = "word") %&gt;% print(n = 20)
+```
+]
+ 
+.panel2-pivotlong-rotate[
+
+```
+# A tibble: 1,275 × 4
+   id    dob        age   word         
+   &lt;chr&gt; &lt;date&gt;     &lt;chr&gt; &lt;chr&gt;        
+ 1 Jonah 2017-08-30 12    book         
+ 2 Jonah 2017-08-30 12.5  dad          
+ 3 Jonah 2017-08-30 13    &lt;NA&gt;         
+ 4 Jonah 2017-08-30 13.5  cat          
+ 5 Jonah 2017-08-30 14    baby         
+ 6 Jonah 2017-08-30 14.5  socks/shoes  
+ 7 Jonah 2017-08-30 15    banana       
+ 8 Jonah 2017-08-30 15.5  cheese       
+ 9 Jonah 2017-08-30 16    shoes        
+10 Jonah 2017-08-30 16.5  monkey       
+11 Jonah 2017-08-30 17    hello        
+12 Jonah 2017-08-30 17.5  bear         
+13 Jonah 2017-08-30 18    milk/drink   
+14 Jonah 2017-08-30 18.5  cleanup      
+15 Jonah 2017-08-30 19    grandpa      
+16 Jonah 2017-08-30 19.5  mouth        
+17 Jonah 2017-08-30 20    coffee       
+18 Jonah 2017-08-30 20.5  agua         
+19 Jonah 2017-08-30 21    octopus      
+20 Jonah 2017-08-30 21.5  (wrist) watch
+# … with 1,255 more rows
+```
+]
+
+&lt;style&gt;
+.panel1-pivotlong-rotate {
+  color: black;
+  width: 87.1111111111111%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-pivotlong-rotate {
+  color: black;
+  width: 10.8888888888889%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-pivotlong-rotate {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+
 &lt;!-- adjust font size and other formatting defs in this css code chunk --&gt;
 &lt;style type="text/css"&gt;
 .remark-code{line-height: 1; font-size: 70%}

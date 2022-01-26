@@ -226,8 +226,21 @@ relig_income %>% slice_head(n = 5)
 #Solution: tidyr's pivot_longer() function
 
 ```{r}
-relig_income %>% pivot_longer(-religion, names_to = "income", values_to = "count")
+relig_income %>% pivot_longer(cols = -religion, names_to = "income", values_to = "count")
 ```
+
+---
+`r chunk_reveal("pivotlong", break_type = "rotate", float = "none", widths = c(8, 1))`
+
+```{r pivotlong, include = FALSE}
+ds <- read_csv('data_cleaned/vocab_annoying_headers.csv') %>% 
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "12")
+ds %>% print(n = 25) #ROTATE
+ds %>% pivot_longer(-(id:dob), names_to = "age", values_to = "word") %>% print(n = 65) #ROTATE
+ds %>% pivot_longer(-(id:dob), names_to = "age", names_prefix = "age", values_to = "word") %>% print(n = 65) #ROTATE
+
+```
+
 
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
