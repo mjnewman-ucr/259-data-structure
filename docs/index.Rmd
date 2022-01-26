@@ -234,11 +234,30 @@ relig_income %>% pivot_longer(cols = -religion, names_to = "income", values_to =
 
 ```{r pivotlong, include = FALSE}
 ds <- read_csv('data_cleaned/vocab_annoying_headers.csv') %>% 
-  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "12")
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "age_12")
 ds %>% print(n = 25) #ROTATE
 ds %>% pivot_longer(-(id:dob), names_to = "age", values_to = "word") %>% print(n = 65) #ROTATE
-ds %>% pivot_longer(-(id:dob), names_to = "age", names_prefix = "age", values_to = "word") %>% print(n = 65) #ROTATE
+ds %>% pivot_longer(-(id:dob), names_to = "age", names_prefix = "age_", values_to = "word") %>% print(n = 65) #ROTATE
+```
+---
+# Types of untidy data: Multiple variables in one column
 
+- Mixing types in the same column
+- No meaningful summary of “value”
+```{r}
+ds <- read_delim(list.files(path = "data_headers", full.names = T),
+      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7)
+ds
+```
+
+---
+#Solution: tidyr's `pivot_wider()`
+
+```{r}
+ds <- read_delim(list.files(path = "data_headers", full.names = T),
+      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7,
+      id = "filename")
+ds %>% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
 ```
 
 

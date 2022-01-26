@@ -1942,9 +1942,9 @@ count: false
 .panel1-pivotlong-rotate[
 
 ```r
-ds &lt;- read_csv('data_cleaned/vocab.csv') %&gt;%
-  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "12")
-*ds %&gt;% print(n = 20)
+ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "age_12")
+*ds %&gt;% print(n = 25)
 ```
 ]
  
@@ -1952,31 +1952,38 @@ ds &lt;- read_csv('data_cleaned/vocab.csv') %&gt;%
 
 ```
 # A tibble: 51 × 27
-   id    dob        `12`    `12.5` `13`  `13.5` `14`  `14.5`  `15`  `15.5` `16` 
-   &lt;chr&gt; &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;lgl&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
- 1 Jonah 2017-08-30 book    dad    NA    cat    baby  socks/… bana… cheese shoes
- 2 Jonah 2017-08-30 ball    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  dog (a… llama turkey berry
- 3 Jonah 2017-08-30 bye bye &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  beep   hi   
- 4 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   diap…
- 5 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   teeth
- 6 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   uhoh 
- 7 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
- 8 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
- 9 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-10 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-11 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-12 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-13 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-14 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-15 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-16 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-17 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-18 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-19 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-20 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;   NA    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; 
-# … with 31 more rows, and 16 more variables: 16.5 &lt;chr&gt;, 17 &lt;chr&gt;, 17.5 &lt;chr&gt;,
-#   18 &lt;chr&gt;, 18.5 &lt;chr&gt;, 19 &lt;chr&gt;, 19.5 &lt;chr&gt;, 20 &lt;chr&gt;, 20.5 &lt;chr&gt;, 21 &lt;chr&gt;,
-#   21.5 &lt;chr&gt;, 22 &lt;chr&gt;, 22.5 &lt;chr&gt;, 23 &lt;chr&gt;, 23.5 &lt;chr&gt;, 24 &lt;chr&gt;
+   id    dob        age_12  age_12.5 age_13 age_13.5 age_14 age_14.5     age_15
+   &lt;chr&gt; &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt; 
+ 1 Jonah 2017-08-30 book    dad      NA     cat      baby   socks/shoes  banana
+ 2 Jonah 2017-08-30 ball    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   dog (animal) llama 
+ 3 Jonah 2017-08-30 bye bye &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+ 4 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+ 5 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+ 6 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+ 7 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+ 8 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+ 9 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+10 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+11 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+12 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+13 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+14 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+15 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+16 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+17 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+18 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+19 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+20 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+21 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+22 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+23 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+24 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+25 Jonah 2017-08-30 &lt;NA&gt;    &lt;NA&gt;     NA     &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         &lt;NA&gt;  
+# … with 26 more rows, and 18 more variables: age_15.5 &lt;chr&gt;, age_16 &lt;chr&gt;,
+#   age_16.5 &lt;chr&gt;, age_17 &lt;chr&gt;, age_17.5 &lt;chr&gt;, age_18 &lt;chr&gt;, age_18.5 &lt;chr&gt;,
+#   age_19 &lt;chr&gt;, age_19.5 &lt;chr&gt;, age_20 &lt;chr&gt;, age_20.5 &lt;chr&gt;, age_21 &lt;chr&gt;,
+#   age_21.5 &lt;chr&gt;, age_22 &lt;chr&gt;, age_22.5 &lt;chr&gt;, age_23 &lt;chr&gt;, age_23.5 &lt;chr&gt;,
+#   age_24 &lt;chr&gt;
 ```
 ]
 
@@ -1987,9 +1994,97 @@ count: false
 .panel1-pivotlong-rotate[
 
 ```r
-ds &lt;- read_csv('data_cleaned/vocab.csv') %&gt;%
-  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "12")
-*ds %&gt;% pivot_longer(cols = -(id:dob), names_to = "age", values_to = "word") %&gt;% print(n = 20)
+ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "age_12")
+*ds %&gt;% pivot_longer(-(id:dob), names_to = "age", values_to = "word") %&gt;% print(n = 65)
+```
+]
+ 
+.panel2-pivotlong-rotate[
+
+```
+# A tibble: 1,275 × 4
+   id    dob        age      word         
+   &lt;chr&gt; &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;        
+ 1 Jonah 2017-08-30 age_12   book         
+ 2 Jonah 2017-08-30 age_12.5 dad          
+ 3 Jonah 2017-08-30 age_13   &lt;NA&gt;         
+ 4 Jonah 2017-08-30 age_13.5 cat          
+ 5 Jonah 2017-08-30 age_14   baby         
+ 6 Jonah 2017-08-30 age_14.5 socks/shoes  
+ 7 Jonah 2017-08-30 age_15   banana       
+ 8 Jonah 2017-08-30 age_15.5 cheese       
+ 9 Jonah 2017-08-30 age_16   shoes        
+10 Jonah 2017-08-30 age_16.5 monkey       
+11 Jonah 2017-08-30 age_17   hello        
+12 Jonah 2017-08-30 age_17.5 bear         
+13 Jonah 2017-08-30 age_18   milk/drink   
+14 Jonah 2017-08-30 age_18.5 cleanup      
+15 Jonah 2017-08-30 age_19   grandpa      
+16 Jonah 2017-08-30 age_19.5 mouth        
+17 Jonah 2017-08-30 age_20   coffee       
+18 Jonah 2017-08-30 age_20.5 agua         
+19 Jonah 2017-08-30 age_21   octopus      
+20 Jonah 2017-08-30 age_21.5 (wrist) watch
+21 Jonah 2017-08-30 age_22   shower       
+22 Jonah 2017-08-30 age_22.5 hyena        
+23 Jonah 2017-08-30 age_23   heart        
+24 Jonah 2017-08-30 age_23.5 singing      
+25 Jonah 2017-08-30 age_24   top          
+26 Jonah 2017-08-30 age_12   ball         
+27 Jonah 2017-08-30 age_12.5 &lt;NA&gt;         
+28 Jonah 2017-08-30 age_13   &lt;NA&gt;         
+29 Jonah 2017-08-30 age_13.5 &lt;NA&gt;         
+30 Jonah 2017-08-30 age_14   &lt;NA&gt;         
+31 Jonah 2017-08-30 age_14.5 dog (animal) 
+32 Jonah 2017-08-30 age_15   llama        
+33 Jonah 2017-08-30 age_15.5 turkey       
+34 Jonah 2017-08-30 age_16   berry        
+35 Jonah 2017-08-30 age_16.5 apple        
+36 Jonah 2017-08-30 age_17   oh no        
+37 Jonah 2017-08-30 age_17.5 go           
+38 Jonah 2017-08-30 age_18   car          
+39 Jonah 2017-08-30 age_18.5 that         
+40 Jonah 2017-08-30 age_19   more         
+41 Jonah 2017-08-30 age_19.5 peacock      
+42 Jonah 2017-08-30 age_20   cup          
+43 Jonah 2017-08-30 age_20.5 hide         
+44 Jonah 2017-08-30 age_21   too          
+45 Jonah 2017-08-30 age_21.5 blanket      
+46 Jonah 2017-08-30 age_22   peanut butter
+47 Jonah 2017-08-30 age_22.5 running      
+48 Jonah 2017-08-30 age_23   empty        
+49 Jonah 2017-08-30 age_23.5 that one     
+50 Jonah 2017-08-30 age_24   sandal       
+51 Jonah 2017-08-30 age_12   bye bye      
+52 Jonah 2017-08-30 age_12.5 &lt;NA&gt;         
+53 Jonah 2017-08-30 age_13   &lt;NA&gt;         
+54 Jonah 2017-08-30 age_13.5 &lt;NA&gt;         
+55 Jonah 2017-08-30 age_14   &lt;NA&gt;         
+56 Jonah 2017-08-30 age_14.5 &lt;NA&gt;         
+57 Jonah 2017-08-30 age_15   &lt;NA&gt;         
+58 Jonah 2017-08-30 age_15.5 beep         
+59 Jonah 2017-08-30 age_16   hi           
+60 Jonah 2017-08-30 age_16.5 box          
+61 Jonah 2017-08-30 age_17   night-night  
+62 Jonah 2017-08-30 age_17.5 jacket       
+63 Jonah 2017-08-30 age_18   dinosaur     
+64 Jonah 2017-08-30 age_18.5 wow          
+65 Jonah 2017-08-30 age_19   snack/food   
+# … with 1,210 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-pivotlong-rotate[
+
+```r
+ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "age_12")
+*ds %&gt;% pivot_longer(-(id:dob), names_to = "age", names_prefix = "age_", values_to = "word") %&gt;% print(n = 65)
 ```
 ]
  
@@ -2019,7 +2114,52 @@ ds &lt;- read_csv('data_cleaned/vocab.csv') %&gt;%
 18 Jonah 2017-08-30 20.5  agua         
 19 Jonah 2017-08-30 21    octopus      
 20 Jonah 2017-08-30 21.5  (wrist) watch
-# … with 1,255 more rows
+21 Jonah 2017-08-30 22    shower       
+22 Jonah 2017-08-30 22.5  hyena        
+23 Jonah 2017-08-30 23    heart        
+24 Jonah 2017-08-30 23.5  singing      
+25 Jonah 2017-08-30 24    top          
+26 Jonah 2017-08-30 12    ball         
+27 Jonah 2017-08-30 12.5  &lt;NA&gt;         
+28 Jonah 2017-08-30 13    &lt;NA&gt;         
+29 Jonah 2017-08-30 13.5  &lt;NA&gt;         
+30 Jonah 2017-08-30 14    &lt;NA&gt;         
+31 Jonah 2017-08-30 14.5  dog (animal) 
+32 Jonah 2017-08-30 15    llama        
+33 Jonah 2017-08-30 15.5  turkey       
+34 Jonah 2017-08-30 16    berry        
+35 Jonah 2017-08-30 16.5  apple        
+36 Jonah 2017-08-30 17    oh no        
+37 Jonah 2017-08-30 17.5  go           
+38 Jonah 2017-08-30 18    car          
+39 Jonah 2017-08-30 18.5  that         
+40 Jonah 2017-08-30 19    more         
+41 Jonah 2017-08-30 19.5  peacock      
+42 Jonah 2017-08-30 20    cup          
+43 Jonah 2017-08-30 20.5  hide         
+44 Jonah 2017-08-30 21    too          
+45 Jonah 2017-08-30 21.5  blanket      
+46 Jonah 2017-08-30 22    peanut butter
+47 Jonah 2017-08-30 22.5  running      
+48 Jonah 2017-08-30 23    empty        
+49 Jonah 2017-08-30 23.5  that one     
+50 Jonah 2017-08-30 24    sandal       
+51 Jonah 2017-08-30 12    bye bye      
+52 Jonah 2017-08-30 12.5  &lt;NA&gt;         
+53 Jonah 2017-08-30 13    &lt;NA&gt;         
+54 Jonah 2017-08-30 13.5  &lt;NA&gt;         
+55 Jonah 2017-08-30 14    &lt;NA&gt;         
+56 Jonah 2017-08-30 14.5  &lt;NA&gt;         
+57 Jonah 2017-08-30 15    &lt;NA&gt;         
+58 Jonah 2017-08-30 15.5  beep         
+59 Jonah 2017-08-30 16    hi           
+60 Jonah 2017-08-30 16.5  box          
+61 Jonah 2017-08-30 17    night-night  
+62 Jonah 2017-08-30 17.5  jacket       
+63 Jonah 2017-08-30 18    dinosaur     
+64 Jonah 2017-08-30 18.5  wow          
+65 Jonah 2017-08-30 19    snack/food   
+# … with 1,210 more rows
 ```
 ]
 
@@ -2051,6 +2191,36 @@ ds &lt;- read_csv('data_cleaned/vocab.csv') %&gt;%
 &lt;/style&gt;
 
 
+
+
+---
+# Types of untidy data: Multiple variables in one column
+
+- Mixing types in the same column
+- No meaningful summary of “value”
+
+```r
+ds &lt;- read_delim(list.files(path = "data_headers", full.names = T),
+      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7)
+ds
+```
+
+```
+# A tibble: 84 × 2
+   field       value
+   &lt;chr&gt;       &lt;chr&gt;
+ 1 Participant 6191 
+ 2 Age         25   
+ 3 Sex         male 
+ 4 Order       1    
+ 5 FirstSpeed  4    
+ 6 Block       1    
+ 7 speed       4    
+ 8 Participant 6191 
+ 9 Age         25   
+10 Sex         male 
+# … with 74 more rows
+```
 
 
 
