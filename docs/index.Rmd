@@ -288,6 +288,36 @@ ds %>% separate(filename, into = c(NA, NA, "ppt_file","ppt_block",NA)) %>%
 ```{r}
 ds %>% separate(filename, into = c("dir","file"), sep = "/")
 ```
+
+---
+# Joining data
+
+- Data frames can be joined in three main ways
+  * `bind_rows` means adding rows (where all of the columns are the same)
+  * `bind_cols` means adding columns (where all observations are the same)
+  * Matching joins, where columns are added from one data frame to another based on matching key information
+
+---
+# Binding Columns
+
+```{r}
+star_wars_numeric <- starwars %>% select(where(is.numeric)) #87x3
+star_wars_char <- starwars %>% select(where(is.character)) #87x8
+star_wars_combined <- bind_cols(star_wars_numeric, star_wars_char) #87x11
+star_wars_combined
+```
+
+---
+# Binding Rows
+
+```{r}
+s1 <- starwars %>% slice_sample(n = 2) #2x14
+s2 <- starwars %>% slice_sample(n = 2) #2x14
+s3 <- starwars %>% slice_sample(n = 2) #2x14
+star_wars_combined <- bind_rows(s1, s2, s3) #6x14
+star_wars_combined
+```
+
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
 .remark-code{line-height: 1; font-size: 70%}

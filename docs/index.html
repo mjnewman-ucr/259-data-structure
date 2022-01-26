@@ -2356,6 +2356,69 @@ ds %&gt;% separate(filename, into = c("dir","file"), sep = "/")
 11 data_headers 6192_5.txt 6192        21    male  2     4          5     4    
 12 data_headers 6192_6.txt 6192        21    male  2     4          6     7    
 ```
+
+---
+# Joining data
+
+- Data frames can be joined in three main ways
+  * `bind_rows` means adding rows (where all of the columns are the same)
+  * `bind_cols` means adding columns (where all observations are the same)
+  * Matching joins, where columns are added from one data frame to another based on matching key information
+
+---
+# Binding Columns
+
+
+```r
+star_wars_numeric &lt;- starwars %&gt;% select(where(is.numeric)) #87x3
+star_wars_char &lt;- starwars %&gt;% select(where(is.character)) #87x8
+star_wars_combined &lt;- bind_cols(star_wars_numeric, star_wars_char) #87x11
+star_wars_combined
+```
+
+```
+# A tibble: 87 × 11
+   height  mass birth_year name    hair_color  skin_color eye_color sex   gender
+    &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; 
+ 1    172    77       19   Luke S… blond       fair       blue      male  mascu…
+ 2    167    75      112   C-3PO   &lt;NA&gt;        gold       yellow    none  mascu…
+ 3     96    32       33   R2-D2   &lt;NA&gt;        white, bl… red       none  mascu…
+ 4    202   136       41.9 Darth … none        white      yellow    male  mascu…
+ 5    150    49       19   Leia O… brown       light      brown     fema… femin…
+ 6    178   120       52   Owen L… brown, grey light      blue      male  mascu…
+ 7    165    75       47   Beru W… brown       light      blue      fema… femin…
+ 8     97    32       NA   R5-D4   &lt;NA&gt;        white, red red       none  mascu…
+ 9    183    84       24   Biggs … black       light      brown     male  mascu…
+10    182    77       57   Obi-Wa… auburn, wh… fair       blue-gray male  mascu…
+# … with 77 more rows, and 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+```
+
+---
+# Binding Rows
+
+
+```r
+s1 &lt;- starwars %&gt;% slice_sample(n = 2) #2x14
+s2 &lt;- starwars %&gt;% slice_sample(n = 2) #2x14
+s3 &lt;- starwars %&gt;% slice_sample(n = 2) #2x14
+star_wars_combined &lt;- bind_rows(s1, s2, s3) #6x14
+star_wars_combined
+```
+
+```
+# A tibble: 6 × 14
+  name    height  mass hair_color  skin_color  eye_color birth_year sex   gender
+  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Obi-Wa…    182    77 auburn, wh… fair        blue-gray         57 male  mascu…
+2 Chewba…    228   112 brown       unknown     blue             200 male  mascu…
+3 Lama Su    229    88 none        grey        black             NA male  mascu…
+4 Barris…    166    50 black       yellow      blue              40 fema… femin…
+5 Lama Su    229    88 none        grey        black             NA male  mascu…
+6 Grievo…    216   159 none        brown, whi… green, y…         NA male  mascu…
+# … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;
+```
+
 &lt;!-- adjust font size and other formatting defs in this css code chunk --&gt;
 &lt;style type="text/css"&gt;
 .remark-code{line-height: 1; font-size: 70%}
