@@ -246,7 +246,7 @@ ds %>% pivot_longer(-(id:dob), names_to = "age", names_prefix = "age_", values_t
 - No meaningful summary of “value”
 ```{r}
 ds <- read_delim(list.files(path = "data_headers", full.names = T),
-      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7)
+      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename")
 ds
 ```
 
@@ -257,9 +257,16 @@ ds
 ds <- read_delim(list.files(path = "data_headers", full.names = T),
       col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7,
       id = "filename")
-ds %>% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+ds <- ds %>% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+ds
 ```
+---
+# Types of untidy data: Multiple variables in each cell
 
+- Solution, tidyr's `separate()` function
+```{r}
+ds %>% separate(filename, into = c(NA, NA, "ppt_file","ppt_block",NA))
+```
 
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
