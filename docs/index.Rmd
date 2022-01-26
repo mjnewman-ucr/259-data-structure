@@ -318,6 +318,20 @@ star_wars_combined <- bind_rows(s1, s2, s3) #6x14
 star_wars_combined
 ```
 
+---
+`r chunk_reveal("join", break_type = "rotate", float = "none", widths = c(8, 1), title = "Joining by key value")`
+
+```{r join, include = F}
+fnames <- list.files(path = "data_headers", full.names = T)
+header <- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename") %>% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+trials <- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_resp", "correct"), skip = 8, id = "filename")
+header #ROTATE
+trials #ROTATE
+left_join(header, trials, by = "filename") #ROTATE
+left_join(slice_sample(header, n = 5), trials, by = "filename") #ROTATE
+left_join(slice_sample(trials, n = 5), header, by = "filename") #ROTATE
+```
+
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
 .remark-code{line-height: 1; font-size: 70%}

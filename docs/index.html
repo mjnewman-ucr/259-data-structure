@@ -2407,17 +2407,217 @@ star_wars_combined
 
 ```
 # A tibble: 6 × 14
-  name    height  mass hair_color  skin_color  eye_color birth_year sex   gender
-  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-1 Obi-Wa…    182    77 auburn, wh… fair        blue-gray         57 male  mascu…
-2 Chewba…    228   112 brown       unknown     blue             200 male  mascu…
-3 Lama Su    229    88 none        grey        black             NA male  mascu…
-4 Barris…    166    50 black       yellow      blue              40 fema… femin…
-5 Lama Su    229    88 none        grey        black             NA male  mascu…
-6 Grievo…    216   159 none        brown, whi… green, y…         NA male  mascu…
+  name    height  mass hair_color skin_color   eye_color birth_year sex   gender
+  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Arvel …     NA    NA brown      fair         brown             NA male  mascu…
+2 Beru W…    165    75 brown      light        blue              47 fema… femin…
+3 Cordé      157    NA brown      light        brown             NA fema… femin…
+4 Jango …    183    79 black      tan          brown             66 male  mascu…
+5 C-3PO      167    75 &lt;NA&gt;       gold         yellow           112 none  mascu…
+6 Zam We…    168    55 blonde     fair, green… yellow            NA fema… femin…
 # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
+
+---
+count: false
+ 
+Joining by key value
+.panel1-join-rotate[
+
+```r
+fnames &lt;- list.files(path = "data_headers", full.names = T)
+header &lt;- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename") %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_resp", "correct"), skip = 8, id = "filename")
+*header
+```
+]
+ 
+.panel2-join-rotate[
+
+```
+# A tibble: 12 × 8
+   filename                Participant Age   Sex   Order FirstSpeed Block speed
+   &lt;chr&gt;                   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
+ 1 data_headers/6191_1.txt 6191        25    male  1     4          1     4    
+ 2 data_headers/6191_2.txt 6191        25    male  1     4          2     7    
+ 3 data_headers/6191_3.txt 6191        25    male  1     4          3     4    
+ 4 data_headers/6191_4.txt 6191        25    male  1     4          4     7    
+ 5 data_headers/6191_5.txt 6191        25    male  1     4          5     4    
+ 6 data_headers/6191_6.txt 6191        25    male  1     4          6     7    
+ 7 data_headers/6192_1.txt 6192        21    male  2     4          1     4    
+ 8 data_headers/6192_2.txt 6192        21    male  2     4          2     7    
+ 9 data_headers/6192_3.txt 6192        21    male  2     4          3     4    
+10 data_headers/6192_4.txt 6192        21    male  2     4          4     7    
+11 data_headers/6192_5.txt 6192        21    male  2     4          5     4    
+12 data_headers/6192_6.txt 6192        21    male  2     4          6     7    
+```
+]
+
+---
+count: false
+ 
+Joining by key value
+.panel1-join-rotate[
+
+```r
+fnames &lt;- list.files(path = "data_headers", full.names = T)
+header &lt;- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename") %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_resp", "correct"), skip = 8, id = "filename")
+*trials
+```
+]
+ 
+.panel2-join-rotate[
+
+```
+# A tibble: 240 × 5
+   filename                trial_num speed_actual speed_resp correct
+   &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;  
+ 1 data_headers/6191_1.txt         1 fas          slower     FALSE  
+ 2 data_headers/6191_1.txt         2 fas          faster     TRUE   
+ 3 data_headers/6191_1.txt         3 fas          faster     TRUE   
+ 4 data_headers/6191_1.txt         4 fas          slower     FALSE  
+ 5 data_headers/6191_1.txt         5 fas          faster     TRUE   
+ 6 data_headers/6191_1.txt         6 slo          slower     TRUE   
+ 7 data_headers/6191_1.txt         7 fas          faster     TRUE   
+ 8 data_headers/6191_1.txt         8 slo          slower     TRUE   
+ 9 data_headers/6191_1.txt         9 slo          slower     TRUE   
+10 data_headers/6191_1.txt        10 slo          faster     FALSE  
+# … with 230 more rows
+```
+]
+
+---
+count: false
+ 
+Joining by key value
+.panel1-join-rotate[
+
+```r
+fnames &lt;- list.files(path = "data_headers", full.names = T)
+header &lt;- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename") %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_resp", "correct"), skip = 8, id = "filename")
+*left_join(header, trials, by = "filename")
+```
+]
+ 
+.panel2-join-rotate[
+
+```
+# A tibble: 240 × 12
+   filename       Participant Age   Sex   Order FirstSpeed Block speed trial_num
+   &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+ 1 data_headers/… 6191        25    male  1     4          1     4             1
+ 2 data_headers/… 6191        25    male  1     4          1     4             2
+ 3 data_headers/… 6191        25    male  1     4          1     4             3
+ 4 data_headers/… 6191        25    male  1     4          1     4             4
+ 5 data_headers/… 6191        25    male  1     4          1     4             5
+ 6 data_headers/… 6191        25    male  1     4          1     4             6
+ 7 data_headers/… 6191        25    male  1     4          1     4             7
+ 8 data_headers/… 6191        25    male  1     4          1     4             8
+ 9 data_headers/… 6191        25    male  1     4          1     4             9
+10 data_headers/… 6191        25    male  1     4          1     4            10
+# … with 230 more rows, and 3 more variables: speed_actual &lt;chr&gt;,
+#   speed_resp &lt;chr&gt;, correct &lt;lgl&gt;
+```
+]
+
+---
+count: false
+ 
+Joining by key value
+.panel1-join-rotate[
+
+```r
+fnames &lt;- list.files(path = "data_headers", full.names = T)
+header &lt;- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename") %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_resp", "correct"), skip = 8, id = "filename")
+*left_join(slice_sample(header, n = 5), trials, by = "filename")
+```
+]
+ 
+.panel2-join-rotate[
+
+```
+# A tibble: 100 × 12
+   filename       Participant Age   Sex   Order FirstSpeed Block speed trial_num
+   &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+ 1 data_headers/… 6191        25    male  1     4          3     4             1
+ 2 data_headers/… 6191        25    male  1     4          3     4             2
+ 3 data_headers/… 6191        25    male  1     4          3     4             3
+ 4 data_headers/… 6191        25    male  1     4          3     4             4
+ 5 data_headers/… 6191        25    male  1     4          3     4             5
+ 6 data_headers/… 6191        25    male  1     4          3     4             6
+ 7 data_headers/… 6191        25    male  1     4          3     4             7
+ 8 data_headers/… 6191        25    male  1     4          3     4             8
+ 9 data_headers/… 6191        25    male  1     4          3     4             9
+10 data_headers/… 6191        25    male  1     4          3     4            10
+# … with 90 more rows, and 3 more variables: speed_actual &lt;chr&gt;,
+#   speed_resp &lt;chr&gt;, correct &lt;lgl&gt;
+```
+]
+
+---
+count: false
+ 
+Joining by key value
+.panel1-join-rotate[
+
+```r
+fnames &lt;- list.files(path = "data_headers", full.names = T)
+header &lt;- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename") %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_resp", "correct"), skip = 8, id = "filename")
+*left_join(slice_sample(trials, n = 5), header, by = "filename")
+```
+]
+ 
+.panel2-join-rotate[
+
+```
+# A tibble: 5 × 12
+  filename     trial_num speed_actual speed_resp correct Participant Age   Sex  
+  &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
+1 data_header…        19 slo          slower     TRUE    6192        21    male 
+2 data_header…         5 slo          faster     FALSE   6192        21    male 
+3 data_header…         5 slo          slower     TRUE    6191        25    male 
+4 data_header…        13 fas          slower     FALSE   6192        21    male 
+5 data_header…        10 slo          slower     TRUE    6192        21    male 
+# … with 4 more variables: Order &lt;chr&gt;, FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;,
+#   speed &lt;chr&gt;
+```
+]
+
+&lt;style&gt;
+.panel1-join-rotate {
+  color: black;
+  width: 87.1111111111111%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-join-rotate {
+  color: black;
+  width: 10.8888888888889%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-join-rotate {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
 
 &lt;!-- adjust font size and other formatting defs in this css code chunk --&gt;
 &lt;style type="text/css"&gt;
