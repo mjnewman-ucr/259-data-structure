@@ -262,12 +262,32 @@ ds
 ```
 ---
 # Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
+```{r}
+ds %>% separate(filename, into = c("dir_part1", "dir_part2", "ppt_file","ppt_block","exten"))
+```
 
-- Solution, tidyr's `separate()` function
+---
+# Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
 ```{r}
 ds %>% separate(filename, into = c(NA, NA, "ppt_file","ppt_block",NA))
 ```
 
+---
+# Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
+```{r}
+ds %>% separate(filename, into = c(NA, NA, "ppt_file","ppt_block",NA)) %>% 
+  mutate(across(-Sex, as.numeric))
+```
+
+---
+# Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
+```{r}
+ds %>% separate(filename, into = c("dir","file"), sep = "/")
+```
 <!-- adjust font size and other formatting defs in this css code chunk -->
 ```{css, eval = TRUE, echo = FALSE}
 .remark-code{line-height: 1; font-size: 70%}

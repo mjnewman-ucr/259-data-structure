@@ -2201,24 +2201,24 @@ ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
 
 ```r
 ds &lt;- read_delim(list.files(path = "data_headers", full.names = T),
-      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7)
+      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename")
 ds
 ```
 
 ```
-# A tibble: 84 × 2
-   field       value
-   &lt;chr&gt;       &lt;chr&gt;
- 1 Participant 6191 
- 2 Age         25   
- 3 Sex         male 
- 4 Order       1    
- 5 FirstSpeed  4    
- 6 Block       1    
- 7 speed       4    
- 8 Participant 6191 
- 9 Age         25   
-10 Sex         male 
+# A tibble: 84 × 3
+   filename                field       value
+   &lt;chr&gt;                   &lt;chr&gt;       &lt;chr&gt;
+ 1 data_headers/6191_1.txt Participant 6191 
+ 2 data_headers/6191_1.txt Age         25   
+ 3 data_headers/6191_1.txt Sex         male 
+ 4 data_headers/6191_1.txt Order       1    
+ 5 data_headers/6191_1.txt FirstSpeed  4    
+ 6 data_headers/6191_1.txt Block       1    
+ 7 data_headers/6191_1.txt speed       4    
+ 8 data_headers/6191_2.txt Participant 6191 
+ 9 data_headers/6191_2.txt Age         25   
+10 data_headers/6191_2.txt Sex         male 
 # … with 74 more rows
 ```
 
@@ -2230,7 +2230,8 @@ ds
 ds &lt;- read_delim(list.files(path = "data_headers", full.names = T),
       col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7,
       id = "filename")
-ds %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+ds &lt;- ds %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+ds
 ```
 
 ```
@@ -2250,8 +2251,111 @@ ds %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = 
 11 data_headers/6192_5.txt 6192        21    male  2     4          5     4    
 12 data_headers/6192_6.txt 6192        21    male  2     4          6     7    
 ```
+---
+# Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
 
+```r
+ds %&gt;% separate(filename, into = c("dir_part1", "dir_part2", "ppt_file","ppt_block","exten"))
+```
 
+```
+# A tibble: 12 × 12
+   dir_part1 dir_part2 ppt_file ppt_block exten Participant Age   Sex   Order
+   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 data      headers   6191     1         txt   6191        25    male  1    
+ 2 data      headers   6191     2         txt   6191        25    male  1    
+ 3 data      headers   6191     3         txt   6191        25    male  1    
+ 4 data      headers   6191     4         txt   6191        25    male  1    
+ 5 data      headers   6191     5         txt   6191        25    male  1    
+ 6 data      headers   6191     6         txt   6191        25    male  1    
+ 7 data      headers   6192     1         txt   6192        21    male  2    
+ 8 data      headers   6192     2         txt   6192        21    male  2    
+ 9 data      headers   6192     3         txt   6192        21    male  2    
+10 data      headers   6192     4         txt   6192        21    male  2    
+11 data      headers   6192     5         txt   6192        21    male  2    
+12 data      headers   6192     6         txt   6192        21    male  2    
+# … with 3 more variables: FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;, speed &lt;chr&gt;
+```
+
+---
+# Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
+
+```r
+ds %&gt;% separate(filename, into = c(NA, NA, "ppt_file","ppt_block",NA))
+```
+
+```
+# A tibble: 12 × 9
+   ppt_file ppt_block Participant Age   Sex   Order FirstSpeed Block speed
+   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
+ 1 6191     1         6191        25    male  1     4          1     4    
+ 2 6191     2         6191        25    male  1     4          2     7    
+ 3 6191     3         6191        25    male  1     4          3     4    
+ 4 6191     4         6191        25    male  1     4          4     7    
+ 5 6191     5         6191        25    male  1     4          5     4    
+ 6 6191     6         6191        25    male  1     4          6     7    
+ 7 6192     1         6192        21    male  2     4          1     4    
+ 8 6192     2         6192        21    male  2     4          2     7    
+ 9 6192     3         6192        21    male  2     4          3     4    
+10 6192     4         6192        21    male  2     4          4     7    
+11 6192     5         6192        21    male  2     4          5     4    
+12 6192     6         6192        21    male  2     4          6     7    
+```
+
+---
+# Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
+
+```r
+ds %&gt;% separate(filename, into = c(NA, NA, "ppt_file","ppt_block",NA)) %&gt;% 
+  mutate(across(-Sex, as.numeric))
+```
+
+```
+# A tibble: 12 × 9
+   ppt_file ppt_block Participant   Age Sex   Order FirstSpeed Block speed
+      &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     6191         1        6191    25 male      1          4     1     4
+ 2     6191         2        6191    25 male      1          4     2     7
+ 3     6191         3        6191    25 male      1          4     3     4
+ 4     6191         4        6191    25 male      1          4     4     7
+ 5     6191         5        6191    25 male      1          4     5     4
+ 6     6191         6        6191    25 male      1          4     6     7
+ 7     6192         1        6192    21 male      2          4     1     4
+ 8     6192         2        6192    21 male      2          4     2     7
+ 9     6192         3        6192    21 male      2          4     3     4
+10     6192         4        6192    21 male      2          4     4     7
+11     6192         5        6192    21 male      2          4     5     4
+12     6192         6        6192    21 male      2          4     6     7
+```
+
+---
+# Types of untidy data: Multiple variables in each cell
+- Solution: tidyr's `separate()` function splits delimited text into separate cells
+
+```r
+ds %&gt;% separate(filename, into = c("dir","file"), sep = "/")
+```
+
+```
+# A tibble: 12 × 9
+   dir          file       Participant Age   Sex   Order FirstSpeed Block speed
+   &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;
+ 1 data_headers 6191_1.txt 6191        25    male  1     4          1     4    
+ 2 data_headers 6191_2.txt 6191        25    male  1     4          2     7    
+ 3 data_headers 6191_3.txt 6191        25    male  1     4          3     4    
+ 4 data_headers 6191_4.txt 6191        25    male  1     4          4     7    
+ 5 data_headers 6191_5.txt 6191        25    male  1     4          5     4    
+ 6 data_headers 6191_6.txt 6191        25    male  1     4          6     7    
+ 7 data_headers 6192_1.txt 6192        21    male  2     4          1     4    
+ 8 data_headers 6192_2.txt 6192        21    male  2     4          2     7    
+ 9 data_headers 6192_3.txt 6192        21    male  2     4          3     4    
+10 data_headers 6192_4.txt 6192        21    male  2     4          4     7    
+11 data_headers 6192_5.txt 6192        21    male  2     4          5     4    
+12 data_headers 6192_6.txt 6192        21    male  2     4          6     7    
+```
 &lt;!-- adjust font size and other formatting defs in this css code chunk --&gt;
 &lt;style type="text/css"&gt;
 .remark-code{line-height: 1; font-size: 70%}
