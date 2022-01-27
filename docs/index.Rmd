@@ -237,15 +237,21 @@ str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 6) #ROTATE
 
 - Determine local time using time zones
 
+- Lots of options within the `lubridate` package
+
+---
+class: center, middle
+background-image: url("lubridate.png")
+background-size: contain
+
+---
+`r chunk_reveal("parse", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Parsing dates")`
+
 ```{r, include = F}
 dates <- tibble(dates1 = c("2017-09-01", "2016-09-01", "2015-09-01", "2014-09-01"),
                 dates2 = c("9/01/2018", "09/01/2017", "9/1/2016", "9/1/2015"),
                 dates3 = c("March 1, 2019", "May 1, 2018", "January 20, 2017", "February 4, 2020"))
 ```
-
----
-`r chunk_reveal("parse", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Parsing dates")`
-
 ```{r parse, include = FALSE}
 dates # ROTATE
 dates %>% mutate(dates1_parsed = ymd(dates1)) #ROTATE
@@ -254,34 +260,53 @@ dates %>% mutate(dates3_parsed = parse_date(dates3, format = "%B %d, %Y")) #ROTA
 ```
 
 ---
+# Time is weird
+
+- Leap days and leap seconds mean that physical time is not the same as calendar time
+  * lubridate `durations` represent physical time
+  * lubridate `periods` represent the passage of calendar time
+
+```{r}
+time_length(mdy("05-27-2022")-mdy("05-27-1983"), "years")
+time_length(as.period(interval(mdy("05-27-1983"), mdy("05-27-2022"))), "years")
+time_length(as.period(interval(mdy("05-27-1983"), mdy("05-28-2022"))), "years")
+```
+
+---
 `r chunk_reveal("age", break_type = "auto", widths = c(1, 1), title = "# Age math")`
 
 ```{r age, include = FALSE}
-birth_date <- ymd("2001-09-01", "2000-09-01", "1999-09-01", "1998-09-01")
-test_date <- ymd("2020-09-01", "2019-09-01", "2018-09-01", "2017-09-01")
+birth_date <- ymd("2001-09-01", "2000-09-01")
+test_date <- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date), unit = "years")
+as.period(interval(start = birth_date, 
+                   end = test_date), unit = "years")
 
 test_date2 <- test_date - years(1) + days(7)
 test_date2
 (test_date2-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date2), unit = "years")
-
+as.period(interval(start = birth_date, 
+                   end = test_date2), unit = "years")
 ```
 ---
 `r chunk_reveal("tz", break_type = "auto", widths = c(1, 1), title = "# Time Zones")`
 
 ```{r tz, include = FALSE}
-birth_date <- ymd("2001-09-01", "2000-09-01", "1999-09-01", "1998-09-01")
-test_date <- ymd("2020-09-01", "2019-09-01", "2018-09-01", "2017-09-01")
-(test_date-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date), unit = "years")
-
-test_date2 <- test_date - years(1) + days(7)
-test_date2
-(test_date2-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date2), unit = "years")
-
+t1 <- as_datetime("2022-01-27 10:39:28", 
+                  tz = "America/Los_Angeles")
+t1
+tz(t1)
+t2 <- as_datetime("2022-01-27 13:39:28", 
+                  tz = "America/New_York")
+t2-t1
+t3 <- as_datetime("2021-10-15 10:39:28", 
+                  tz = "America/Los_Angeles")
+t3
+as.period(interval(start = t3, end = t1), 
+          unit = "days")
+with_tz(t3, "America/New_York")
+force_tz(t3, "America/New_York")
+```
 
 ---
 # Factors represent categories

@@ -1934,465 +1934,6 @@ count: false
 
 ```r
 fnames &lt;- list.files(path="data_raw", full.names = T)
-*str_extract_all(ds$word, "(?&lt;=[:space:])[:alpha:]+", simplify = T)
-```
-]
- 
-.panel2-morepatterns-rotate[
-
-```
-       [,1]    
-  [1,] ""      
-  [2,] ""      
-  [3,] ""      
-  [4,] ""      
-  [5,] ""      
-  [6,] ""      
-  [7,] ""      
-  [8,] ""      
-  [9,] ""      
- [10,] ""      
- [11,] ""      
- [12,] ""      
- [13,] ""      
- [14,] ""      
- [15,] ""      
- [16,] ""      
- [17,] ""      
- [18,] ""      
- [19,] "watch" 
- [20,] ""      
- [21,] ""      
- [22,] ""      
- [23,] ""      
- [24,] ""      
- [25,] ""      
- [26,] ""      
- [27,] ""      
- [28,] ""      
- [29,] ""      
- [30,] ""      
- [31,] "no"    
- [32,] ""      
- [33,] ""      
- [34,] ""      
- [35,] ""      
- [36,] ""      
- [37,] ""      
- [38,] ""      
- [39,] ""      
- [40,] ""      
- [41,] "butter"
- [42,] ""      
- [43,] ""      
- [44,] "one"   
- [45,] ""      
- [46,] "bye"   
- [47,] ""      
- [48,] ""      
- [49,] ""      
- [50,] ""      
- [51,] ""      
- [52,] ""      
- [53,] ""      
- [54,] ""      
- [55,] ""      
- [56,] ""      
- [57,] ""      
- [58,] ""      
- [59,] ""      
- [60,] ""      
- [61,] ""      
- [62,] "end"   
- [63,] "there" 
- [64,] ""      
- [65,] ""      
- [66,] ""      
- [67,] ""      
- [68,] ""      
- [69,] ""      
- [70,] ""      
- [71,] ""      
- [72,] ""      
- [73,] ""      
- [74,] ""      
- [75,] ""      
- [76,] ""      
- [77,] ""      
- [78,] ""      
- [79,] "one"   
- [80,] ""      
- [81,] ""      
- [82,] ""      
- [83,] ""      
- [84,] ""      
- [85,] ""      
- [86,] ""      
- [87,] ""      
- [88,] ""      
- [89,] ""      
- [90,] ""      
- [91,] ""      
- [92,] ""      
- [93,] ""      
- [94,] ""      
- [95,] ""      
- [96,] ""      
- [97,] ""      
- [98,] ""      
- [99,] ""      
-[100,] ""      
-[101,] ""      
-[102,] ""      
-[103,] ""      
-[104,] ""      
-[105,] ""      
-[106,] ""      
-[107,] ""      
-[108,] ""      
-[109,] ""      
-[110,] ""      
-[111,] ""      
-[112,] ""      
-[113,] ""      
-[114,] "sound" 
-[115,] ""      
-[116,] ""      
-[117,] "five"  
-[118,] ""      
-[119,] ""      
-[120,] ""      
-[121,] ""      
-[122,] ""      
-[123,] ""      
-[124,] ""      
-[125,] "down"  
-[126,] ""      
-[127,] ""      
-[128,] ""      
-[129,] "bump"  
-[130,] ""      
-[131,] ""      
-[132,] ""      
-[133,] "cream" 
-[134,] ""      
-[135,] ""      
-[136,] ""      
-[137,] ""      
-[138,] ""      
-[139,] ""      
-[140,] ""      
-[141,] ""      
-[142,] ""      
-[143,] ""      
-[144,] ""      
-[145,] ""      
-[146,] ""      
-[147,] ""      
-[148,] ""      
-[149,] ""      
-[150,] ""      
-[151,] ""      
-[152,] ""      
-[153,] ""      
-[154,] ""      
-[155,] ""      
-[156,] ""      
-[157,] ""      
-[158,] ""      
-[159,] ""      
-[160,] ""      
-[161,] ""      
-[162,] ""      
-[163,] ""      
-[164,] ""      
-[165,] ""      
-[166,] ""      
-[167,] ""      
-[168,] ""      
-[169,] "nail"  
-[170,] ""      
-[171,] ""      
-[172,] ""      
-[173,] ""      
-[174,] "you"   
-[175,] ""      
-[176,] ""      
-[177,] ""      
-[178,] ""      
-[179,] ""      
-[180,] ""      
-[181,] "you"   
-[182,] ""      
-[183,] ""      
-[184,] ""      
-[185,] ""      
-[186,] ""      
-[187,] ""      
-[188,] ""      
-[189,] ""      
-[190,] ""      
-[191,] ""      
-[192,] ""      
-[193,] ""      
-[194,] ""      
-[195,] ""      
-[196,] ""      
-[197,] ""      
-[198,] ""      
-[199,] ""      
-[200,] ""      
-[201,] ""      
-[202,] ""      
-[203,] ""      
-[204,] ""      
-[205,] ""      
-[206,] ""      
-[207,] ""      
-[208,] ""      
-[209,] ""      
-[210,] ""      
-[211,] ""      
-[212,] "you"   
-[213,] ""      
-[214,] ""      
-[215,] ""      
-[216,] ""      
-[217,] ""      
-[218,] ""      
-[219,] ""      
-[220,] ""      
-[221,] "it"    
-[222,] ""      
-[223,] ""      
-[224,] ""      
-[225,] ""      
-[226,] ""      
-[227,] ""      
-[228,] ""      
-[229,] ""      
-[230,] ""      
-[231,] ""      
-[232,] ""      
-[233,] ""      
-[234,] ""      
-[235,] ""      
-[236,] ""      
-[237,] ""      
-[238,] ""      
-[239,] ""      
-[240,] ""      
-[241,] ""      
-[242,] ""      
-[243,] ""      
-[244,] ""      
-[245,] ""      
-[246,] ""      
-[247,] ""      
-[248,] ""      
-[249,] ""      
-[250,] ""      
-[251,] ""      
-[252,] ""      
-[253,] ""      
-[254,] ""      
-[255,] ""      
-[256,] ""      
-[257,] ""      
-[258,] ""      
-[259,] "down"  
-[260,] ""      
-[261,] "sack"  
-[262,] ""      
-[263,] ""      
-[264,] ""      
-[265,] ""      
-[266,] ""      
-[267,] ""      
-[268,] ""      
-[269,] ""      
-[270,] ""      
-[271,] ""      
-[272,] ""      
-[273,] ""      
-[274,] ""      
-[275,] ""      
-[276,] ""      
-[277,] ""      
-[278,] ""      
-[279,] ""      
-[280,] "there" 
-[281,] ""      
-[282,] ""      
-[283,] ""      
-[284,] ""      
-[285,] ""      
-[286,] ""      
-[287,] ""      
-[288,] ""      
-[289,] ""      
-[290,] ""      
-[291,] ""      
-[292,] ""      
-[293,] ""      
-[294,] ""      
-[295,] ""      
-[296,] ""      
-[297,] ""      
-[298,] ""      
-[299,] ""      
-[300,] ""      
-[301,] ""      
-[302,] ""      
-[303,] ""      
-[304,] ""      
-[305,] ""      
-[306,] "bean"  
-[307,] ""      
-[308,] "gunk"  
-[309,] ""      
-[310,] ""      
-[311,] ""      
-[312,] ""      
-[313,] ""      
-[314,] ""      
-[315,] ""      
-[316,] ""      
-[317,] ""      
-[318,] ""      
-[319,] ""      
-[320,] ""      
-[321,] ""      
-[322,] "pick"  
-[323,] ""      
-[324,] ""      
-[325,] ""      
-[326,] ""      
-[327,] ""      
-[328,] ""      
-[329,] ""      
-[330,] ""      
-[331,] ""      
-[332,] ""      
-[333,] ""      
-[334,] ""      
-[335,] ""      
-[336,] ""      
-[337,] ""      
-[338,] ""      
-[339,] ""      
-[340,] ""      
-[341,] ""      
-[342,] ""      
-[343,] ""      
-[344,] "way"   
-[345,] ""      
-[346,] ""      
-[347,] ""      
-[348,] ""      
-[349,] ""      
-[350,] ""      
-[351,] ""      
-[352,] ""      
-[353,] "down"  
-[354,] ""      
-[355,] ""      
-[356,] "sound" 
-[357,] ""      
-[358,] ""      
-[359,] ""      
-[360,] ""      
-[361,] ""      
-[362,] ""      
-[363,] ""      
-[364,] ""      
-[365,] ""      
-[366,] ""      
-[367,] ""      
-[368,] ""      
-[369,] ""      
-[370,] ""      
-[371,] "me"    
-[372,] ""      
-[373,] ""      
-[374,] ""      
-[375,] ""      
-[376,] ""      
-[377,] ""      
-[378,] ""      
-[379,] ""      
-[380,] ""      
-[381,] ""      
-[382,] ""      
-[383,] ""      
-[384,] ""      
-[385,] ""      
-[386,] ""      
-[387,] ""      
-[388,] ""      
-[389,] ""      
-[390,] "it"    
-[391,] ""      
-[392,] ""      
-[393,] ""      
-[394,] ""      
-[395,] ""      
-[396,] ""      
-[397,] ""      
-[398,] ""      
-[399,] ""      
-[400,] "it"    
-[401,] ""      
-[402,] "button"
-[403,] ""      
-[404,] ""      
-[405,] ""      
-[406,] "bear"  
-[407,] ""      
-[408,] ""      
-[409,] ""      
-[410,] ""      
-[411,] ""      
-[412,] ""      
-[413,] ""      
-[414,] ""      
-[415,] ""      
-[416,] ""      
-[417,] ""      
-[418,] ""      
-[419,] ""      
-[420,] ""      
-[421,] ""      
-[422,] ""      
-[423,] ""      
-[424,] ""      
-[425,] ""      
-[426,] ""      
-[427,] ""      
-[428,] ""      
-[429,] ""      
-[430,] ""      
-[431,] ""      
-[432,] ""      
-[433,] ""      
-[434,] ""      
-[435,] ""      
-[436,] ""      
-[437,] ""      
-[438,] ""      
-[439,] ""      
-[440,] ""      
-```
-]
-
----
-count: false
- 
-# Matching patterns
-.panel1-morepatterns-rotate[
-
-```r
-fnames &lt;- list.files(path="data_raw", full.names = T)
 *str_extract_all(ds$word, boundary("word"), simplify = T)
 ```
 ]
@@ -2953,14 +2494,14 @@ count: false
 
 ```r
 age &lt;- seq(from = 12, to = 24, by = .5)
-*str_glue("Today's date is {Sys.Date()} and the time zone is {Sys.timezone()}")
+*str_glue("Today's date is {today()} and the time is {now()}")
 ```
 ]
  
 .panel2-combiningstrings-rotate[
 
 ```
-Today's date is 2022-01-27 and the time zone is America/Los_Angeles
+Today's date is 2022-01-27 and the time is 2022-01-27 11:12:19
 ```
 ]
 
@@ -3069,94 +2610,797 @@ Here is pi to 6 digits: 3.14159
 
 
 
-```r
-age &lt;- seq(from = 12, to = 24, by = .5) 
-paste0("data_raw/vocab", age, ".csv") #ROTATE
-```
+---
+# Working with dates and times
+- Correctly parse dates/times from character data
 
-```
- [1] "data_raw/vocab12.csv"   "data_raw/vocab12.5.csv" "data_raw/vocab13.csv"  
- [4] "data_raw/vocab13.5.csv" "data_raw/vocab14.csv"   "data_raw/vocab14.5.csv"
- [7] "data_raw/vocab15.csv"   "data_raw/vocab15.5.csv" "data_raw/vocab16.csv"  
-[10] "data_raw/vocab16.5.csv" "data_raw/vocab17.csv"   "data_raw/vocab17.5.csv"
-[13] "data_raw/vocab18.csv"   "data_raw/vocab18.5.csv" "data_raw/vocab19.csv"  
-[16] "data_raw/vocab19.5.csv" "data_raw/vocab20.csv"   "data_raw/vocab20.5.csv"
-[19] "data_raw/vocab21.csv"   "data_raw/vocab21.5.csv" "data_raw/vocab22.csv"  
-[22] "data_raw/vocab22.5.csv" "data_raw/vocab23.csv"   "data_raw/vocab23.5.csv"
-[25] "data_raw/vocab24.csv"  
-```
+- Calculate differences between dates/times (e.g., ages, task length)
 
-```r
-str_glue("data_raw/vocab{age}.csv") #ROTATE
-```
+- Determine local time using time zones
 
-```
-data_raw/vocab12.csv
-data_raw/vocab12.5.csv
-data_raw/vocab13.csv
-data_raw/vocab13.5.csv
-data_raw/vocab14.csv
-data_raw/vocab14.5.csv
-data_raw/vocab15.csv
-data_raw/vocab15.5.csv
-data_raw/vocab16.csv
-data_raw/vocab16.5.csv
-data_raw/vocab17.csv
-data_raw/vocab17.5.csv
-data_raw/vocab18.csv
-data_raw/vocab18.5.csv
-data_raw/vocab19.csv
-data_raw/vocab19.5.csv
-data_raw/vocab20.csv
-data_raw/vocab20.5.csv
-data_raw/vocab21.csv
-data_raw/vocab21.5.csv
-data_raw/vocab22.csv
-data_raw/vocab22.5.csv
-data_raw/vocab23.csv
-data_raw/vocab23.5.csv
-data_raw/vocab24.csv
-```
+- Lots of options within the `lubridate` package
+
+---
+class: center, middle
+background-image: url("lubridate.png")
+background-size: contain
+
+
+
+---
+count: false
+ 
+# Parsing dates
+.panel1-parse-rotate[
 
 ```r
-str_glue("Today's date is {Sys.Date()} and the time zone is {Sys.timezone()}") #ROTATE
+dates  # ROTATE
+*dates %&gt;% mutate(dates1_parsed = ymd(dates1))
+```
+]
+ 
+.panel2-parse-rotate[
+
+```
+# A tibble: 4 × 3
+  dates1     dates2     dates3          
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;           
+1 2017-09-01 9/01/2018  March 1, 2019   
+2 2016-09-01 09/01/2017 May 1, 2018     
+3 2015-09-01 9/1/2016   January 20, 2017
+4 2014-09-01 9/1/2015   February 4, 2020
 ```
 
 ```
-Today's date is 2022-01-27 and the time zone is America/Los_Angeles
+# A tibble: 4 × 4
+  dates1     dates2     dates3           dates1_parsed
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;            &lt;date&gt;       
+1 2017-09-01 9/01/2018  March 1, 2019    2017-09-01   
+2 2016-09-01 09/01/2017 May 1, 2018      2016-09-01   
+3 2015-09-01 9/1/2016   January 20, 2017 2015-09-01   
+4 2014-09-01 9/1/2015   February 4, 2020 2014-09-01   
+```
+]
+
+---
+count: false
+ 
+# Parsing dates
+.panel1-parse-rotate[
+
+```r
+dates  # ROTATE
+*dates %&gt;% mutate(dates2_parsed = mdy(dates2))
+```
+]
+ 
+.panel2-parse-rotate[
+
+```
+# A tibble: 4 × 3
+  dates1     dates2     dates3          
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;           
+1 2017-09-01 9/01/2018  March 1, 2019   
+2 2016-09-01 09/01/2017 May 1, 2018     
+3 2015-09-01 9/1/2016   January 20, 2017
+4 2014-09-01 9/1/2015   February 4, 2020
+```
+
+```
+# A tibble: 4 × 4
+  dates1     dates2     dates3           dates2_parsed
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;            &lt;date&gt;       
+1 2017-09-01 9/01/2018  March 1, 2019    2018-09-01   
+2 2016-09-01 09/01/2017 May 1, 2018      2017-09-01   
+3 2015-09-01 9/1/2016   January 20, 2017 2016-09-01   
+4 2014-09-01 9/1/2015   February 4, 2020 2015-09-01   
+```
+]
+
+---
+count: false
+ 
+# Parsing dates
+.panel1-parse-rotate[
+
+```r
+dates  # ROTATE
+*dates %&gt;% mutate(dates3_parsed = parse_date(dates3, format = "%B %d, %Y"))
+```
+]
+ 
+.panel2-parse-rotate[
+
+```
+# A tibble: 4 × 3
+  dates1     dates2     dates3          
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;           
+1 2017-09-01 9/01/2018  March 1, 2019   
+2 2016-09-01 09/01/2017 May 1, 2018     
+3 2015-09-01 9/1/2016   January 20, 2017
+4 2014-09-01 9/1/2015   February 4, 2020
+```
+
+```
+# A tibble: 4 × 4
+  dates1     dates2     dates3           dates3_parsed
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;            &lt;date&gt;       
+1 2017-09-01 9/01/2018  March 1, 2019    2019-03-01   
+2 2016-09-01 09/01/2017 May 1, 2018      2018-05-01   
+3 2015-09-01 9/1/2016   January 20, 2017 2017-01-20   
+4 2014-09-01 9/1/2015   February 4, 2020 2020-02-04   
+```
+]
+
+&lt;style&gt;
+.panel1-parse-rotate {
+  color: black;
+  width: 90.4615384615385%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-parse-rotate {
+  color: black;
+  width: 7.53846153846154%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-parse-rotate {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+---
+# Time is weird
+
+- Leap days and leap seconds mean that physical time is not the same as calendar time
+  * lubridate `durations` represent physical time
+  * lubridate `periods` represent the passage of calendar time
+
+
+```r
+time_length(mdy("05-27-2022")-mdy("05-27-1983"), "years")
+```
+
+```
+[1] 39.00068
 ```
 
 ```r
-str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 3) #ROTATE
+time_length(as.period(interval(mdy("05-27-1983"), mdy("05-27-2022"))), "years")
 ```
 
 ```
-Here is pi to 3 digits: 3.14
-```
-
-```r
-str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 4) #ROTATE
-```
-
-```
-Here is pi to 4 digits: 3.142
+[1] 39
 ```
 
 ```r
-str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 5) #ROTATE
+time_length(as.period(interval(mdy("05-27-1983"), mdy("05-28-2022"))), "years")
 ```
 
 ```
-Here is pi to 5 digits: 3.1416
+[1] 39.00274
 ```
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
 
 ```r
-str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 6) #ROTATE
+*birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+```
+]
+ 
+.panel2-age-auto[
+
+]
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
+
+```r
+birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+*test_date &lt;- ymd("2020-09-01", "2019-09-01")
+```
+]
+ 
+.panel2-age-auto[
+
+]
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
+
+```r
+birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+test_date &lt;- ymd("2020-09-01", "2019-09-01")
+*(test_date-birth_date)/365.25
+```
+]
+ 
+.panel2-age-auto[
+
+```
+Time differences in days
+[1] 19.00068 18.99795
+```
+]
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
+
+```r
+birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+test_date &lt;- ymd("2020-09-01", "2019-09-01")
+(test_date-birth_date)/365.25
+*as.period(interval(start = birth_date,
+*                  end = test_date), unit = "years")
+```
+]
+ 
+.panel2-age-auto[
+
+```
+Time differences in days
+[1] 19.00068 18.99795
 ```
 
 ```
-Here is pi to 6 digits: 3.14159
+[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
 ```
+]
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
+
+```r
+birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+test_date &lt;- ymd("2020-09-01", "2019-09-01")
+(test_date-birth_date)/365.25
+as.period(interval(start = birth_date,
+                   end = test_date), unit = "years")
+
+*test_date2 &lt;- test_date - years(1) + days(7)
+```
+]
+ 
+.panel2-age-auto[
+
+```
+Time differences in days
+[1] 19.00068 18.99795
+```
+
+```
+[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
+```
+]
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
+
+```r
+birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+test_date &lt;- ymd("2020-09-01", "2019-09-01")
+(test_date-birth_date)/365.25
+as.period(interval(start = birth_date,
+                   end = test_date), unit = "years")
+
+test_date2 &lt;- test_date - years(1) + days(7)
+*test_date2
+```
+]
+ 
+.panel2-age-auto[
+
+```
+Time differences in days
+[1] 19.00068 18.99795
+```
+
+```
+[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
+```
+
+```
+[1] "2019-09-08" "2018-09-08"
+```
+]
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
+
+```r
+birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+test_date &lt;- ymd("2020-09-01", "2019-09-01")
+(test_date-birth_date)/365.25
+as.period(interval(start = birth_date,
+                   end = test_date), unit = "years")
+
+test_date2 &lt;- test_date - years(1) + days(7)
+test_date2
+*(test_date2-birth_date)/365.25
+```
+]
+ 
+.panel2-age-auto[
+
+```
+Time differences in days
+[1] 19.00068 18.99795
+```
+
+```
+[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
+```
+
+```
+[1] "2019-09-08" "2018-09-08"
+```
+
+```
+Time differences in days
+[1] 18.0178 18.0178
+```
+]
+
+---
+count: false
+ 
+# Age math
+.panel1-age-auto[
+
+```r
+birth_date &lt;- ymd("2001-09-01", "2000-09-01")
+test_date &lt;- ymd("2020-09-01", "2019-09-01")
+(test_date-birth_date)/365.25
+as.period(interval(start = birth_date,
+                   end = test_date), unit = "years")
+
+test_date2 &lt;- test_date - years(1) + days(7)
+test_date2
+(test_date2-birth_date)/365.25
+*as.period(interval(start = birth_date,
+*                  end = test_date2), unit = "years")
+```
+]
+ 
+.panel2-age-auto[
+
+```
+Time differences in days
+[1] 19.00068 18.99795
+```
+
+```
+[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
+```
+
+```
+[1] "2019-09-08" "2018-09-08"
+```
+
+```
+Time differences in days
+[1] 18.0178 18.0178
+```
+
+```
+[1] "18y 0m 7d 0H 0M 0S" "18y 0m 7d 0H 0M 0S"
+```
+]
+
+&lt;style&gt;
+.panel1-age-auto {
+  color: black;
+  width: 49%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-age-auto {
+  color: black;
+  width: 49%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-age-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+*t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+```
+]
+ 
+.panel2-tz-auto[
+
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+*t1
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+*tz(t1)
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+tz(t1)
+*t2 &lt;- as_datetime("2022-01-27 13:39:28", tz = "America/New_York")
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+tz(t1)
+t2 &lt;- as_datetime("2022-01-27 13:39:28", tz = "America/New_York")
+*t2-t1
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+
+```
+Time difference of 0 secs
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+tz(t1)
+t2 &lt;- as_datetime("2022-01-27 13:39:28", tz = "America/New_York")
+t2-t1
+*t3 &lt;- as_datetime("2021-10-15 10:39:28", tz = "America/Los_Angeles")
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+
+```
+Time difference of 0 secs
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+tz(t1)
+t2 &lt;- as_datetime("2022-01-27 13:39:28", tz = "America/New_York")
+t2-t1
+t3 &lt;- as_datetime("2021-10-15 10:39:28", tz = "America/Los_Angeles")
+*t3
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+
+```
+Time difference of 0 secs
+```
+
+```
+[1] "2021-10-15 10:39:28 PDT"
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+tz(t1)
+t2 &lt;- as_datetime("2022-01-27 13:39:28", tz = "America/New_York")
+t2-t1
+t3 &lt;- as_datetime("2021-10-15 10:39:28", tz = "America/Los_Angeles")
+t3
+*as.period(interval(start = t3, end = t1), unit = "days")
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+
+```
+Time difference of 0 secs
+```
+
+```
+[1] "2021-10-15 10:39:28 PDT"
+```
+
+```
+[1] "104d 1H 0M 0S"
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+tz(t1)
+t2 &lt;- as_datetime("2022-01-27 13:39:28", tz = "America/New_York")
+t2-t1
+t3 &lt;- as_datetime("2021-10-15 10:39:28", tz = "America/Los_Angeles")
+t3
+as.period(interval(start = t3, end = t1), unit = "days")
+*with_tz(t3, "America/New_York")
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+
+```
+Time difference of 0 secs
+```
+
+```
+[1] "2021-10-15 10:39:28 PDT"
+```
+
+```
+[1] "104d 1H 0M 0S"
+```
+
+```
+[1] "2021-10-15 13:39:28 EDT"
+```
+]
+
+---
+count: false
+ 
+# Time Zones
+.panel1-tz-auto[
+
+```r
+t1 &lt;- as_datetime("2022-01-27 10:39:28", tz = "America/Los_Angeles")
+t1
+tz(t1)
+t2 &lt;- as_datetime("2022-01-27 13:39:28", tz = "America/New_York")
+t2-t1
+t3 &lt;- as_datetime("2021-10-15 10:39:28", tz = "America/Los_Angeles")
+t3
+as.period(interval(start = t3, end = t1), unit = "days")
+with_tz(t3, "America/New_York")
+*force_tz(t3, "America/New_York")
+```
+]
+ 
+.panel2-tz-auto[
+
+```
+[1] "2022-01-27 10:39:28 PST"
+```
+
+```
+[1] "America/Los_Angeles"
+```
+
+```
+Time difference of 0 secs
+```
+
+```
+[1] "2021-10-15 10:39:28 PDT"
+```
+
+```
+[1] "104d 1H 0M 0S"
+```
+
+```
+[1] "2021-10-15 13:39:28 EDT"
+```
+
+```
+[1] "2021-10-15 10:39:28 EDT"
+```
+]
+
+&lt;style&gt;
+.panel1-tz-auto {
+  color: black;
+  width: 49%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-tz-auto {
+  color: black;
+  width: 49%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-tz-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
 
 ---
 # Factors represent categories
@@ -4328,14 +4572,14 @@ star_wars_combined
 
 ```
 # A tibble: 6 × 14
-  name    height  mass hair_color  skin_color  eye_color birth_year sex   gender
-  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-1 Grievo…    216   159 none        brown, whi… green, y…         NA male  mascu…
-2 Dud Bo…     94    45 none        blue, grey  yellow            NA male  mascu…
-3 Owen L…    178   120 brown, grey light       blue              52 male  mascu…
-4 Ki-Adi…    198    82 white       pale        yellow            92 male  mascu…
-5 Leia O…    150    49 brown       light       brown             19 fema… femin…
-6 Ackbar     180    83 none        brown mott… orange            41 male  mascu…
+  name     height  mass hair_color skin_color  eye_color birth_year sex   gender
+  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 R2-D2        96  32   &lt;NA&gt;       white, blue red               33 none  mascu…
+2 BB8          NA  NA   none       none        black             NA none  mascu…
+3 Kit Fis…    196  87   none       green       black             NA male  mascu…
+4 IG-88       200 140   none       metal       red               15 none  mascu…
+5 Luminar…    170  56.2 black      yellow      blue              58 fema… femin…
+6 Bib For…    180  NA   none       pale        pink              NA male  mascu…
 # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
@@ -4464,16 +4708,16 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 100 × 12
    filename       Participant Age   Sex   Order FirstSpeed Block speed trial_num
    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 data_headers/… 6191        25    male  1     4          1     4             1
- 2 data_headers/… 6191        25    male  1     4          1     4             2
- 3 data_headers/… 6191        25    male  1     4          1     4             3
- 4 data_headers/… 6191        25    male  1     4          1     4             4
- 5 data_headers/… 6191        25    male  1     4          1     4             5
- 6 data_headers/… 6191        25    male  1     4          1     4             6
- 7 data_headers/… 6191        25    male  1     4          1     4             7
- 8 data_headers/… 6191        25    male  1     4          1     4             8
- 9 data_headers/… 6191        25    male  1     4          1     4             9
-10 data_headers/… 6191        25    male  1     4          1     4            10
+ 1 data_headers/… 6192        21    male  2     4          4     7             1
+ 2 data_headers/… 6192        21    male  2     4          4     7             2
+ 3 data_headers/… 6192        21    male  2     4          4     7             3
+ 4 data_headers/… 6192        21    male  2     4          4     7             4
+ 5 data_headers/… 6192        21    male  2     4          4     7             5
+ 6 data_headers/… 6192        21    male  2     4          4     7             6
+ 7 data_headers/… 6192        21    male  2     4          4     7             7
+ 8 data_headers/… 6192        21    male  2     4          4     7             8
+ 9 data_headers/… 6192        21    male  2     4          4     7             9
+10 data_headers/… 6192        21    male  2     4          4     7            10
 # … with 90 more rows, and 3 more variables: speed_actual &lt;chr&gt;,
 #   speed_resp &lt;chr&gt;, correct &lt;lgl&gt;
 ```
@@ -4499,11 +4743,11 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 5 × 12
   filename     trial_num speed_actual speed_resp correct Participant Age   Sex  
   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
-1 data_header…        18 slo          slower     TRUE    6191        25    male 
-2 data_header…        12 fas          slower     FALSE   6191        25    male 
-3 data_header…        14 fas          faster     TRUE    6192        21    male 
-4 data_header…        13 slo          slower     TRUE    6192        21    male 
-5 data_header…         2 slo          slower     TRUE    6192        21    male 
+1 data_header…         5 slo          slower     TRUE    6192        21    male 
+2 data_header…        11 fas          slower     FALSE   6192        21    male 
+3 data_header…        12 slo          slower     TRUE    6192        21    male 
+4 data_header…        18 slo          faster     FALSE   6191        25    male 
+5 data_header…        17 slo          slower     TRUE    6191        25    male 
 # … with 4 more variables: Order &lt;chr&gt;, FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;,
 #   speed &lt;chr&gt;
 ```
