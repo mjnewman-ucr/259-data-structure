@@ -2501,7 +2501,7 @@ age &lt;- seq(from = 12, to = 24, by = .5)
 .panel2-combiningstrings-rotate[
 
 ```
-Today's date is 2022-01-27 and the time is 2022-01-27 11:12:19
+Today's date is 2022-01-27 and the time is 2022-01-27 11:19:29
 ```
 ]
 
@@ -2620,12 +2620,11 @@ Here is pi to 6 digits: 3.14159
 
 - Lots of options within the `lubridate` package
 
+
 ---
 class: center, middle
 background-image: url("lubridate.png")
 background-size: contain
-
-
 
 ---
 count: false
@@ -2857,8 +2856,7 @@ count: false
 birth_date &lt;- ymd("2001-09-01", "2000-09-01")
 test_date &lt;- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
-*as.period(interval(start = birth_date,
-*                  end = test_date), unit = "years")
+*as.period(interval(start = birth_date, end = test_date), unit = "years")
 ```
 ]
  
@@ -2884,8 +2882,7 @@ count: false
 birth_date &lt;- ymd("2001-09-01", "2000-09-01")
 test_date &lt;- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
-as.period(interval(start = birth_date,
-                   end = test_date), unit = "years")
+as.period(interval(start = birth_date, end = test_date), unit = "years")
 
 *test_date2 &lt;- test_date - years(1) + days(7)
 ```
@@ -2913,8 +2910,7 @@ count: false
 birth_date &lt;- ymd("2001-09-01", "2000-09-01")
 test_date &lt;- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
-as.period(interval(start = birth_date,
-                   end = test_date), unit = "years")
+as.period(interval(start = birth_date, end = test_date), unit = "years")
 
 test_date2 &lt;- test_date - years(1) + days(7)
 *test_date2
@@ -2947,8 +2943,7 @@ count: false
 birth_date &lt;- ymd("2001-09-01", "2000-09-01")
 test_date &lt;- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
-as.period(interval(start = birth_date,
-                   end = test_date), unit = "years")
+as.period(interval(start = birth_date, end = test_date), unit = "years")
 
 test_date2 &lt;- test_date - years(1) + days(7)
 test_date2
@@ -2987,14 +2982,12 @@ count: false
 birth_date &lt;- ymd("2001-09-01", "2000-09-01")
 test_date &lt;- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
-as.period(interval(start = birth_date,
-                   end = test_date), unit = "years")
+as.period(interval(start = birth_date, end = test_date), unit = "years")
 
 test_date2 &lt;- test_date - years(1) + days(7)
 test_date2
 (test_date2-birth_date)/365.25
-*as.period(interval(start = birth_date,
-*                  end = test_date2), unit = "years")
+*as.period(interval(start = birth_date, end = test_date2), unit = "years")
 ```
 ]
  
@@ -3374,7 +3367,7 @@ Time difference of 0 secs
 &lt;style&gt;
 .panel1-tz-auto {
   color: black;
-  width: 49%;
+  width: 65.3333333333333%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -3382,7 +3375,7 @@ Time difference of 0 secs
 }
 .panel2-tz-auto {
   color: black;
-  width: 49%;
+  width: 32.6666666666667%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -4574,12 +4567,12 @@ star_wars_combined
 # A tibble: 6 × 14
   name     height  mass hair_color skin_color  eye_color birth_year sex   gender
   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-1 R2-D2        96  32   &lt;NA&gt;       white, blue red               33 none  mascu…
-2 BB8          NA  NA   none       none        black             NA none  mascu…
-3 Kit Fis…    196  87   none       green       black             NA male  mascu…
-4 IG-88       200 140   none       metal       red               15 none  mascu…
-5 Luminar…    170  56.2 black      yellow      blue              58 fema… femin…
-6 Bib For…    180  NA   none       pale        pink              NA male  mascu…
+1 Biggs D…    183    84 black      light       brown             24 male  mascu…
+2 C-3PO       167    75 &lt;NA&gt;       gold        yellow           112 none  mascu…
+3 Mas Ame…    196    NA none       blue        blue              NA male  mascu…
+4 Taun We     213    NA none       grey        black             NA fema… femin…
+5 Nute Gu…    191    90 none       mottled gr… red               NA male  mascu…
+6 Chewbac…    228   112 brown      unknown     blue             200 male  mascu…
 # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
@@ -4708,16 +4701,16 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 100 × 12
    filename       Participant Age   Sex   Order FirstSpeed Block speed trial_num
    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 data_headers/… 6192        21    male  2     4          4     7             1
- 2 data_headers/… 6192        21    male  2     4          4     7             2
- 3 data_headers/… 6192        21    male  2     4          4     7             3
- 4 data_headers/… 6192        21    male  2     4          4     7             4
- 5 data_headers/… 6192        21    male  2     4          4     7             5
- 6 data_headers/… 6192        21    male  2     4          4     7             6
- 7 data_headers/… 6192        21    male  2     4          4     7             7
- 8 data_headers/… 6192        21    male  2     4          4     7             8
- 9 data_headers/… 6192        21    male  2     4          4     7             9
-10 data_headers/… 6192        21    male  2     4          4     7            10
+ 1 data_headers/… 6192        21    male  2     4          1     4             1
+ 2 data_headers/… 6192        21    male  2     4          1     4             2
+ 3 data_headers/… 6192        21    male  2     4          1     4             3
+ 4 data_headers/… 6192        21    male  2     4          1     4             4
+ 5 data_headers/… 6192        21    male  2     4          1     4             5
+ 6 data_headers/… 6192        21    male  2     4          1     4             6
+ 7 data_headers/… 6192        21    male  2     4          1     4             7
+ 8 data_headers/… 6192        21    male  2     4          1     4             8
+ 9 data_headers/… 6192        21    male  2     4          1     4             9
+10 data_headers/… 6192        21    male  2     4          1     4            10
 # … with 90 more rows, and 3 more variables: speed_actual &lt;chr&gt;,
 #   speed_resp &lt;chr&gt;, correct &lt;lgl&gt;
 ```
@@ -4743,11 +4736,11 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 5 × 12
   filename     trial_num speed_actual speed_resp correct Participant Age   Sex  
   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
-1 data_header…         5 slo          slower     TRUE    6192        21    male 
-2 data_header…        11 fas          slower     FALSE   6192        21    male 
-3 data_header…        12 slo          slower     TRUE    6192        21    male 
-4 data_header…        18 slo          faster     FALSE   6191        25    male 
-5 data_header…        17 slo          slower     TRUE    6191        25    male 
+1 data_header…        11 slo          slower     TRUE    6192        21    male 
+2 data_header…         5 slo          slower     TRUE    6192        21    male 
+3 data_header…        19 slo          slower     TRUE    6191        25    male 
+4 data_header…         2 fas          faster     TRUE    6192        21    male 
+5 data_header…        16 fas          faster     TRUE    6191        25    male 
 # … with 4 more variables: Order &lt;chr&gt;, FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;,
 #   speed &lt;chr&gt;
 ```
