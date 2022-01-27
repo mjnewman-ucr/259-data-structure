@@ -189,6 +189,7 @@ ds %>% mutate(word_cleaned = str_remove_all(word, "[:punct:]")) #ROTATE
 ds %>% mutate(word_cleaned = str_replace_all(word, "[:punct:]"," ")) #ROTATE
 ds %>% mutate(vowel_count = str_count(word, "[aeiou]")) #ROTATE
 ds %>% mutate(is_three_letter = str_detect(word, "[:alnum:{3}]")) #ROTATE
+
 ```
 ---
 
@@ -197,7 +198,25 @@ ds %>% mutate(is_three_letter = str_detect(word, "[:alnum:{3}]")) #ROTATE
 fnames <- list.files(path="data_raw", full.names = T)
 str_split(fnames, "/") #ROTATE
 str_replace_all(fnames, "data_raw/|.csv|vocab","") #ROTATE
-str_extract_all(fnames, "\\d{2}.\\d{1}|\\d{2}","") #ROTATE
+str_extract_all(fnames, "\\d{2}.\\d{1}|\\d{2}", simplify = T) #ROTATE
+str_extract_all(fnames, "\\.[:alpha:]{1,4}", simplify = T) #ROTATE
+str_extract_all(fnames, "(?<=\\/)[:alpha:]+", simplify = T) #ROTATE
+str_extract_all(ds$word, "(?<=[:space:])[:alpha:]+", simplify = T) #ROTATE
+str_extract_all(ds$word, boundary("word"), simplify = T) #ROTATE
+
+```
+
+---
+`r chunk_reveal("combiningstrings", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Combining strings")`
+```{r combiningstrings, include = T}
+age <- seq(from = 12, to = 24, by = .5) 
+paste0("data_raw/vocab", age, ".csv") #ROTATE
+str_glue("data_raw/vocab{age}.csv") #ROTATE
+str_glue("Today's date is {Sys.Date()} and the time zone is {Sys.timezone()}") #ROTATE
+str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 3) #ROTATE
+str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 4) #ROTATE
+str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 5) #ROTATE
+str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 6) #ROTATE
 
 ```
 
