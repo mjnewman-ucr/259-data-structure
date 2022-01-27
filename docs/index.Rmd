@@ -167,6 +167,10 @@ ds <- read_csv('data_cleaned/vocab_annoying_headers.csv') %>%
 ds <- ds %>% pivot_longer(-(id:dob), names_to = "age", values_to = "word", values_drop_na = T, names_prefix = "age_") %>%
   select(-id, -dob)
 ```
+---
+class: center, middle
+background-image: url("stringr.png")
+background-size: contain
 
 ---
 # Jonah's first words
@@ -181,10 +185,16 @@ ds %>% mutate(word_len = str_length(word),
               has_b = str_detect(word, "b"), 
               num_b = str_count(word, "b"))
 ```
----
 
+---
+class: center, middle
+background-image: url("regx.png")
+background-size: contain
+
+---
 `r chunk_reveal("patterns", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Matching patterns")`
-```{r patterns, include = T}
+
+```{r patterns, include = F}
 ds %>% mutate(word_cleaned = str_remove_all(word, "[:punct:]")) #ROTATE
 ds %>% mutate(word_cleaned = str_replace_all(word, "[:punct:]"," ")) #ROTATE
 ds %>% mutate(vowel_count = str_count(word, "[aeiou]")) #ROTATE
@@ -194,31 +204,84 @@ ds %>% mutate(is_three_letter = str_detect(word, "[:alnum:{3}]")) #ROTATE
 ---
 
 `r chunk_reveal("morepatterns", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Matching patterns")`
-```{r morepatterns, include = T}
+
+```{r morepatterns, include = F}
 fnames <- list.files(path="data_raw", full.names = T)
 str_split(fnames, "/") #ROTATE
 str_replace_all(fnames, "data_raw/|.csv|vocab","") #ROTATE
 str_extract_all(fnames, "\\d{2}.\\d{1}|\\d{2}", simplify = T) #ROTATE
 str_extract_all(fnames, "\\.[:alpha:]{1,4}", simplify = T) #ROTATE
 str_extract_all(fnames, "(?<=\\/)[:alpha:]+", simplify = T) #ROTATE
-str_extract_all(ds$word, "(?<=[:space:])[:alpha:]+", simplify = T) #ROTATE
 str_extract_all(ds$word, boundary("word"), simplify = T) #ROTATE
 
 ```
 
 ---
 `r chunk_reveal("combiningstrings", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Combining strings")`
-```{r combiningstrings, include = T}
+```{r combiningstrings, include = F}
 age <- seq(from = 12, to = 24, by = .5) 
 paste0("data_raw/vocab", age, ".csv") #ROTATE
 str_glue("data_raw/vocab{age}.csv") #ROTATE
-str_glue("Today's date is {Sys.Date()} and the time zone is {Sys.timezone()}") #ROTATE
+str_glue("Today's date is {today()} and the time is {now()}") #ROTATE
 str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 3) #ROTATE
 str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 4) #ROTATE
 str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 5) #ROTATE
 str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 6) #ROTATE
 
 ```
+---
+# Working with dates and times
+- Correctly parse dates/times from character data
+
+- Calculate differences between dates/times (e.g., ages, task length)
+
+- Determine local time using time zones
+
+```{r, include = F}
+dates <- tibble(dates1 = c("2017-09-01", "2016-09-01", "2015-09-01", "2014-09-01"),
+                dates2 = c("9/01/2018", "09/01/2017", "9/1/2016", "9/1/2015"),
+                dates3 = c("March 1, 2019", "May 1, 2018", "January 20, 2017", "February 4, 2020"))
+```
+
+---
+`r chunk_reveal("parse", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Parsing dates")`
+
+```{r parse, include = FALSE}
+dates # ROTATE
+dates %>% mutate(dates1_parsed = ymd(dates1)) #ROTATE
+dates %>% mutate(dates2_parsed = mdy(dates2)) #ROTATE
+dates %>% mutate(dates3_parsed = parse_date(dates3, format = "%B %d, %Y")) #ROTATE
+```
+
+---
+`r chunk_reveal("age", break_type = "auto", widths = c(1, 1), title = "# Age math")`
+
+```{r age, include = FALSE}
+birth_date <- ymd("2001-09-01", "2000-09-01", "1999-09-01", "1998-09-01")
+test_date <- ymd("2020-09-01", "2019-09-01", "2018-09-01", "2017-09-01")
+(test_date-birth_date)/365.25
+as.period(interval(start = birth_date, end = test_date), unit = "years")
+
+test_date2 <- test_date - years(1) + days(7)
+test_date2
+(test_date2-birth_date)/365.25
+as.period(interval(start = birth_date, end = test_date2), unit = "years")
+
+```
+---
+`r chunk_reveal("tz", break_type = "auto", widths = c(1, 1), title = "# Time Zones")`
+
+```{r tz, include = FALSE}
+birth_date <- ymd("2001-09-01", "2000-09-01", "1999-09-01", "1998-09-01")
+test_date <- ymd("2020-09-01", "2019-09-01", "2018-09-01", "2017-09-01")
+(test_date-birth_date)/365.25
+as.period(interval(start = birth_date, end = test_date), unit = "years")
+
+test_date2 <- test_date - years(1) + days(7)
+test_date2
+(test_date2-birth_date)/365.25
+as.period(interval(start = birth_date, end = test_date2), unit = "years")
+
 
 ---
 # Factors represent categories
