@@ -37,7 +37,7 @@ class: center, middle, inverse, title-slide
   * Strings
   * Factors
   * Dates
-- Tidy data
+- Tidying data
   * Pivoting from/to wide/long format
   * Binding and joining data
  
@@ -1326,6 +1326,202 @@ $z
 
 
 ---
+# Character data (strings)
+
+- At minimum, working with characters is needed to deal with file paths
+
+- Understanding how to construct and format strings can help you avoid hard-coding things like graph labels and output tables
+
+- Learning how to wrangle strings and exploit patterns helps write more efficient code (e.g., selecting and mutating with `contains()`, `starts_with()`, etc.)
+
+- The `stringr` package has a suite of helper functions for common string operations
+
+
+
+---
+# Jonah's first words
+
+```r
+ds$word
+```
+
+```
+  [1] "book"               "dad"                "cat"               
+  [4] "baby"               "socks/shoes"        "banana"            
+  [7] "cheese"             "shoes"              "monkey"            
+ [10] "hello"              "bear"               "milk/drink"        
+ [13] "cleanup"            "grandpa"            "mouth"             
+ [16] "coffee"             "agua"               "octopus"           
+ [19] "(wrist) watch"      "shower"             "hyena"             
+ [22] "heart"              "singing"            "top"               
+ [25] "ball"               "dog (animal)"       "llama"             
+ [28] "turkey"             "berry"              "apple"             
+ [31] "oh no"              "go"                 "car"               
+ [34] "that"               "more"               "peacock"           
+ [37] "cup"                "hide"               "too"               
+ [40] "blanket"            "peanut butter"      "running"           
+ [43] "empty"              "that one"           "sandal"            
+ [46] "bye bye"            "beep"               "hi"                
+ [49] "box"                "night-night"        "jacket"            
+ [52] "dinosaur"           "wow"                "snack/food"        
+ [55] "wash"               "stroller"           "shark"             
+ [58] "grandma"            "face"               "lemon"             
+ [61] "potty"              "the end"            "over there"        
+ [64] "make"               "diaper"             "bubble"            
+ [67] "fish"               "tea"                "peekaboo"          
+ [70] "mama"               "keys"               "yellow"            
+ [73] "pasta"              "spoon"              "light"             
+ [76] "button"             "penis"              "finger"            
+ [79] "this one"           "both"               "teeth"             
+ [82] "mmmm"               "lion"               "google"            
+ [85] "trash"              "cow"                "broccoli"          
+ [88] "yogurt"             "outside"            "toy"               
+ [91] "train"              "spaghetti"          "stairs"            
+ [94] "black"              "wipe"               "loud"              
+ [97] "uhoh"               "stick"              "hat"               
+[100] "elephant"           "no"                 "yeah"              
+[103] "zebra"              "circle"             "lap"               
+[106] "towel"              "back"               "oatmeal"           
+[109] "xylophone"          "crib"               "where"             
+[112] "sticker"            "cookie"             "[eating sound]"    
+[115] "bee"                "tree"               "high five"         
+[118] "eat"                "plate"              "plane"             
+[121] "olive"              "pepper (vegetable)" "cough"             
+[124] "dolphin"            "lay down"           "poop"              
+[127] "done"               "rabbit"             "(fist) bump"       
+[130] "up"                 "tray"               "people"            
+[133] "ice cream"          "animal"             "window"            
+[136] "letter"             "walrus"             "nose"              
+[139] "hippo"              "tissue"             "bread"             
+[142] "girl"               "orange (color)"     "frog"              
+[145] "rice"               "art"                "marker"            
+[148] "number"             "kicking"            "bag"               
+[151] "gentle"             "pig"                "pear"              
+[154] "horse"              "here"               "soap"              
+[157] "pee"                "mine"               "drum"              
+[160] "goes"               "shorts"             "gentle"            
+[163] "owl"                "bird"               "cereal"            
+[166] "flower"             "school"             "mirror"            
+[169] "(finger) nail"      "lip"                "music"             
+[172] "hold"               "bite"               "thank you"         
+[175] "zebra"              "squirrel"           "spider"            
+[178] "kiwi"               "read"               "picture"           
+[181] "bless you"          "spatula"            "clock"             
+[184] "happy"              "racoon"             "house"             
+[187] "pancake"            "bumblebee"          "watermelon"        
+[190] "wheel"              "computer"           "snake"             
+[193] "wet"                "dark"               "curtain"           
+[196] "Jonah"              "paper"              "cheek"             
+[199] "shirt"              "big"                "roll (v)"          
+[202] "guitar"             "zuchinni"           "broken"            
+[205] "rhino"              "pork"               "belly"             
+[208] "help"               "sheep"              "dip"               
+[211] "butterfly"          "bless you"          "skateboard"        
+[214] "woof"               "move"               "cap"               
+[217] "juice"              "cracker"            "down"              
+[220] "bamba"              "do it"              "little"            
+[223] "hot"                "alligator"          "pocket"            
+[226] "clip"               "everybody"          "close"             
+[229] "bib"                "slide"              "laundry"           
+[232] "away"               "boat"               "green"             
+[235] "stop"               "meow"               "bed"               
+[238] "gone"               "fit"                "wash"              
+[241] "open"               "toes"               "penguin"           
+[244] "fork"               "red"                "piece"             
+[247] "oink"               "pepper (spice)"     "garbage"           
+[250] "working"            "yay"                "cheers"            
+[253] "bus"                "feet"               "balloon"           
+[256] "duckie"             "roar"               "vacuum"            
+[259] "upside down"        "ravioli"            "sleep sack"        
+[262] "egg"                "pants"              "goose"             
+[265] "clap"               "mail"               "moo"               
+[268] "friend"             "knife"              "farm"              
+[271] "couch"              "color"              "cactus"            
+[274] "drink"              "taco"               "tortilla"          
+[277] "castle"             "dolphin"            "please"            
+[280] "right there"        "chicken"            "chair"             
+[283] "hand"               "towel"              "sweep"             
+[286] "breakfast"          "crab"               "count"             
+[289] "market"             "booger"             "carrot"            
+[292] "orange (fruit)"     "rail"               "robot"             
+[295] "chili"              "star"               "noodle"            
+[298] "castle"             "bathroom"           "cheers"            
+[301] "ear"                "rock"               "shopping"          
+[304] "tower"              "alright"            "green bean"        
+[307] "wiggle"             "(eye) gunk"         "avocado"           
+[310] "exercise"           "jumping"            "tail"              
+[313] "tent"               "snail"              "blueberry"         
+[316] "loud"               "nectarine"          "hug"               
+[319] "glasses"            "home"               "brush"             
+[322] "(guitar) pick"      "bike"               "pajamas"           
+[325] "pouch"              "grape"              "footloose"         
+[328] "page"               "phone"              "puzzle"            
+[331] "stove"              "reach"              "throw"             
+[334] "kitchen"            "kiss"               "swim"              
+[337] "climb"              "happy"              "haircut"           
+[340] "walk"               "leaf"               "park"              
+[343] "white"              "that way"           "teacher"           
+[346] "elbow"              "hair"               "table"             
+[349] "umbrella"           "coaster"            "bug"               
+[352] "show"               "fall down"          "boy"               
+[355] "pull"               "[gorilla sound]"    "basket"            
+[358] "toast"              "three"              "this"              
+[361] "purple"             "neigh"              "magnet"            
+[364] "upstairs"           "like"               "turn"              
+[367] "pillow"             "baa"                "kale"              
+[370] "plum"               "excuse me"          "get"               
+[373] "out"                "button"             "time"              
+[376] "tiger"              "barn"               "pink"              
+[379] "nurse"              "tv"                 "dishes"            
+[382] "sauce"              "catch"              "sun"               
+[385] "sheet"              "rooster"            "dishwasher"        
+[388] "tomato"             "panda"              "got it"            
+[391] "sky"                "all"                "shut"              
+[394] "change"             "shoulder"           "driving"           
+[397] "off"                "cooking"            "elbow"             
+[400] "found it"           "on"                 "belly button"      
+[403] "family"             "moon"               "watch (v)"         
+[406] "polar bear"         "camera"             "pumpkin"           
+[409] "bounce"             "see"                "thumb"             
+[412] "playground"         "ice"                "leopard"           
+[415] "swing"              "push"               "messy"             
+[418] "goat"               "ride"               "camel"             
+[421] "carpet"             "sound"              "fast"              
+[424] "napkin"             "tickle"             "soft"              
+[427] "fox"                "crayon"             "cut"               
+[430] "cry"                "play"               "rocket"            
+[433] "pot"                "floor"              "two"               
+[436] "dry"                "bottle"             "new"               
+[439] "spicy"              "spin"              
+```
+
+---
+# Jonah's first words
+
+```r
+ds %&gt;% mutate(word_len = str_length(word), 
+              has_b = str_detect(word, "b"), 
+              num_b = str_count(word, "b"))
+```
+
+```
+# A tibble: 440 × 5
+   age   word        word_len has_b num_b
+   &lt;chr&gt; &lt;chr&gt;          &lt;int&gt; &lt;lgl&gt; &lt;int&gt;
+ 1 12    book               4 TRUE      1
+ 2 12.5  dad                3 FALSE     0
+ 3 13.5  cat                3 FALSE     0
+ 4 14    baby               4 TRUE      2
+ 5 14.5  socks/shoes       11 FALSE     0
+ 6 15    banana             6 TRUE      1
+ 7 15.5  cheese             6 FALSE     0
+ 8 16    shoes              5 FALSE     0
+ 9 16.5  monkey             6 FALSE     0
+10 17    hello              5 FALSE     0
+# … with 430 more rows
+```
+
+---
 # Factors represent categories
 
 ```r
@@ -1869,15 +2065,6 @@ count: false
 
 
 ---
-#Why do data need to be tidied?
-
-- Data files are often created without the foresight of how they will be read by computers
-- Creators prioritize making things human-readable at the expense of making data machine-readable
-- Tidy data makes programming more convenient
-  * Analysis and graphing functions in R (e.g., lm, lmer, ggplot) expect data in long format
-- You may need to switch formats to fit data to different requirements or to output data for publication (tables)
-
----
 #Tidy data (Wickham, 2014)
 
 - Each variable is a column
@@ -1886,6 +2073,15 @@ count: false
   * Observation means unit for which all variables are measured (e.g., person, session, trial)
 - Each type of observational unit is a separate table
   * Participant questionnaire vs. trial-by-trial outcomes
+
+---
+#Why do data need to be tidied?
+
+- Data files are often created without the foresight of how they will be read by computers
+- Creators prioritize making things human-readable at the expense of making data machine-readable
+- Tidy data makes programming more convenient
+  * Analysis and graphing functions in R (e.g., lm, lmer, ggplot) expect data in long format
+- You may need to switch formats to fit data to different requirements or to output data for publication (tables)
 
 ---
 #Types of un-tidy data: Column names are variables
@@ -2450,7 +2646,8 @@ ds %&gt;% separate(filename, into = c("dir","file"), sep = "/")
 - Data frames can be joined in three main ways
   * `bind_rows` means adding rows (where all of the columns are the same)
   * `bind_cols` means adding columns (where all observations are the same)
-  * Matching joins, where columns are added from one data frame to another based on matching key information
+  * Matching joins, where columns are added from one data frame to another based on matching key information (`full_join`, `inner_join`, `left_join`,`right_join`)
+  
 
 ---
 # Binding Columns
@@ -2494,14 +2691,14 @@ star_wars_combined
 
 ```
 # A tibble: 6 × 14
-  name    height  mass hair_color skin_color   eye_color birth_year sex   gender
-  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-1 Zam We…    168    55 blonde     fair, green… yellow          NA   fema… femin…
-2 Jocast…    167    NA white      fair         blue            NA   fema… femin…
-3 R4-P17      96    NA none       silver, red  red, blue       NA   none  femin…
-4 IG-88      200   140 none       metal        red             15   none  mascu…
-5 Taun We    213    NA none       grey         black           NA   fema… femin…
-6 Anakin…    188    84 blond      fair         blue            41.9 male  mascu…
+  name     height  mass hair_color skin_color  eye_color birth_year sex   gender
+  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Biggs D…    183    84 black      light       brown             24 male  mascu…
+2 R2-D2        96    32 &lt;NA&gt;       white, blue red               33 none  mascu…
+3 Poe Dam…     NA    NA brown      light       brown             NA male  mascu…
+4 Rey          NA    NA brown      light       hazel             NA fema… femin…
+5 R5-D4        97    32 &lt;NA&gt;       white, red  red               NA none  mascu…
+6 Biggs D…    183    84 black      light       brown             24 male  mascu…
 # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
@@ -2509,7 +2706,7 @@ star_wars_combined
 ---
 count: false
  
-Joining by key value
+# Joining by key value
 .panel1-join-rotate[
 
 ```r
@@ -2544,7 +2741,7 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 ---
 count: false
  
-Joining by key value
+# Joining by key value
 .panel1-join-rotate[
 
 ```r
@@ -2578,7 +2775,7 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 ---
 count: false
  
-Joining by key value
+# Joining by key value
 .panel1-join-rotate[
 
 ```r
@@ -2613,7 +2810,7 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 ---
 count: false
  
-Joining by key value
+# Joining by key value
 .panel1-join-rotate[
 
 ```r
@@ -2630,16 +2827,16 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 100 × 12
    filename       Participant Age   Sex   Order FirstSpeed Block speed trial_num
    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 data_headers/… 6191        25    male  1     4          5     4             1
- 2 data_headers/… 6191        25    male  1     4          5     4             2
- 3 data_headers/… 6191        25    male  1     4          5     4             3
- 4 data_headers/… 6191        25    male  1     4          5     4             4
- 5 data_headers/… 6191        25    male  1     4          5     4             5
- 6 data_headers/… 6191        25    male  1     4          5     4             6
- 7 data_headers/… 6191        25    male  1     4          5     4             7
- 8 data_headers/… 6191        25    male  1     4          5     4             8
- 9 data_headers/… 6191        25    male  1     4          5     4             9
-10 data_headers/… 6191        25    male  1     4          5     4            10
+ 1 data_headers/… 6191        25    male  1     4          2     7             1
+ 2 data_headers/… 6191        25    male  1     4          2     7             2
+ 3 data_headers/… 6191        25    male  1     4          2     7             3
+ 4 data_headers/… 6191        25    male  1     4          2     7             4
+ 5 data_headers/… 6191        25    male  1     4          2     7             5
+ 6 data_headers/… 6191        25    male  1     4          2     7             6
+ 7 data_headers/… 6191        25    male  1     4          2     7             7
+ 8 data_headers/… 6191        25    male  1     4          2     7             8
+ 9 data_headers/… 6191        25    male  1     4          2     7             9
+10 data_headers/… 6191        25    male  1     4          2     7            10
 # … with 90 more rows, and 3 more variables: speed_actual &lt;chr&gt;,
 #   speed_resp &lt;chr&gt;, correct &lt;lgl&gt;
 ```
@@ -2648,7 +2845,7 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 ---
 count: false
  
-Joining by key value
+# Joining by key value
 .panel1-join-rotate[
 
 ```r
@@ -2665,11 +2862,11 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 5 × 12
   filename     trial_num speed_actual speed_resp correct Participant Age   Sex  
   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
-1 data_header…        19 slo          slower     TRUE    6192        21    male 
-2 data_header…         6 slo          slower     TRUE    6192        21    male 
-3 data_header…         7 fas          faster     TRUE    6191        25    male 
-4 data_header…        14 slo          slower     TRUE    6192        21    male 
-5 data_header…        14 fas          faster     TRUE    6191        25    male 
+1 data_header…        13 fas          faster     TRUE    6191        25    male 
+2 data_header…        17 slo          slower     TRUE    6192        21    male 
+3 data_header…         5 fas          faster     TRUE    6191        25    male 
+4 data_header…         5 fas          faster     TRUE    6191        25    male 
+5 data_header…         6 fas          faster     TRUE    6192        21    male 
 # … with 4 more variables: Order &lt;chr&gt;, FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;,
 #   speed &lt;chr&gt;
 ```
