@@ -226,11 +226,12 @@ relig_income %>% slice_head(n = 5)
 #Solution: tidyr's pivot_longer() function
 
 ```{r}
-relig_income %>% pivot_longer(cols = -religion, names_to = "income", values_to = "count")
+relig_income %>% 
+  pivot_longer(cols = -religion, names_to = "income", values_to = "count")
 ```
 
 ---
-`r chunk_reveal("pivotlong", break_type = "rotate", float = "none", widths = c(8, 1))`
+`r chunk_reveal("pivotlong", break_type = "rotate", float = "none", widths = c(15, 1))`
 
 ```{r pivotlong, include = FALSE}
 ds <- read_csv('data_cleaned/vocab_annoying_headers.csv') %>% 
@@ -238,26 +239,28 @@ ds <- read_csv('data_cleaned/vocab_annoying_headers.csv') %>%
 ds %>% print(n = 25) #ROTATE
 ds %>% pivot_longer(-(id:dob), names_to = "age", values_to = "word") %>% print(n = 65) #ROTATE
 ds %>% pivot_longer(-(id:dob), names_to = "age", names_prefix = "age_", values_to = "word") %>% print(n = 65) #ROTATE
+ds %>% pivot_longer(-(id:dob), names_to = "age", values_to = "word", values_drop_na = T, names_prefix = "age_") %>% print(n = 65) #ROTATE
+```
+
+```{r, include = F}
+ds <- read_delim(list.files(path = "data_headers", full.names = T),
+      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename")
 ```
 ---
 # Types of untidy data: Multiple variables in one column
 
 - Mixing types in the same column
 - No meaningful summary of “value”
-```{r}
-ds <- read_delim(list.files(path = "data_headers", full.names = T),
-      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename")
-ds
+```{r} 
+print(ds)
 ```
-
 ---
 #Solution: tidyr's `pivot_wider()`
 
 ```{r}
-ds <- read_delim(list.files(path = "data_headers", full.names = T),
-      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7,
-      id = "filename")
-ds <- ds %>% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+ds <- ds %>% pivot_wider(id_cols = "filename", 
+                         names_from = "field", 
+                         values_from = "value")
 ds
 ```
 ---
@@ -295,7 +298,8 @@ ds %>% separate(filename, into = c("dir","file"), sep = "/")
 - Data frames can be joined in three main ways
   * `bind_rows` means adding rows (where all of the columns are the same)
   * `bind_cols` means adding columns (where all observations are the same)
-  * Matching joins, where columns are added from one data frame to another based on matching key information
+  * Matching joins, where columns are added from one data frame to another based on matching key information (`full_join`, `inner_join`, `left_join`,`right_join`)
+  
 
 ---
 # Binding Columns
@@ -319,7 +323,7 @@ star_wars_combined
 ```
 
 ---
-`r chunk_reveal("join", break_type = "rotate", float = "none", widths = c(8, 1), title = "Joining by key value")`
+`r chunk_reveal("join", break_type = "rotate", float = "none", widths = c(8, 1), title = "# Joining by key value")`
 
 ```{r join, include = F}
 fnames <- list.files(path = "data_headers", full.names = T)

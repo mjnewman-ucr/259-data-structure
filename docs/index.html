@@ -45,7 +45,7 @@ class: center, middle, inverse, title-slide
 &lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; Follow along from the [Github repo](https://github.com/psych-259-data-science-2022/259-data-structure)
 ]
 
-.footnote[.small[.bold[Last updated: 2022-01-25]]]
+.footnote[.small[.bold[Last updated: 2022-01-26]]]
 
 ---
 # Common data types in R
@@ -1915,7 +1915,8 @@ relig_income %&gt;% slice_head(n = 5)
 
 
 ```r
-relig_income %&gt;% pivot_longer(cols = -religion, names_to = "income", values_to = "count")
+relig_income %&gt;% 
+  pivot_longer(cols = -religion, names_to = "income", values_to = "count")
 ```
 
 ```
@@ -2163,10 +2164,98 @@ ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
 ```
 ]
 
+---
+count: false
+ 
+
+.panel1-pivotlong-rotate[
+
+```r
+ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "age_12")
+*ds %&gt;% pivot_longer(-(id:dob), names_to = "age", values_to = "word", values_drop_na = T, names_prefix = "age_") %&gt;% print(n = 65)
+```
+]
+ 
+.panel2-pivotlong-rotate[
+
+```
+# A tibble: 440 × 4
+   id    dob        age   word         
+   &lt;chr&gt; &lt;date&gt;     &lt;chr&gt; &lt;chr&gt;        
+ 1 Jonah 2017-08-30 12    book         
+ 2 Jonah 2017-08-30 12.5  dad          
+ 3 Jonah 2017-08-30 13.5  cat          
+ 4 Jonah 2017-08-30 14    baby         
+ 5 Jonah 2017-08-30 14.5  socks/shoes  
+ 6 Jonah 2017-08-30 15    banana       
+ 7 Jonah 2017-08-30 15.5  cheese       
+ 8 Jonah 2017-08-30 16    shoes        
+ 9 Jonah 2017-08-30 16.5  monkey       
+10 Jonah 2017-08-30 17    hello        
+11 Jonah 2017-08-30 17.5  bear         
+12 Jonah 2017-08-30 18    milk/drink   
+13 Jonah 2017-08-30 18.5  cleanup      
+14 Jonah 2017-08-30 19    grandpa      
+15 Jonah 2017-08-30 19.5  mouth        
+16 Jonah 2017-08-30 20    coffee       
+17 Jonah 2017-08-30 20.5  agua         
+18 Jonah 2017-08-30 21    octopus      
+19 Jonah 2017-08-30 21.5  (wrist) watch
+20 Jonah 2017-08-30 22    shower       
+21 Jonah 2017-08-30 22.5  hyena        
+22 Jonah 2017-08-30 23    heart        
+23 Jonah 2017-08-30 23.5  singing      
+24 Jonah 2017-08-30 24    top          
+25 Jonah 2017-08-30 12    ball         
+26 Jonah 2017-08-30 14.5  dog (animal) 
+27 Jonah 2017-08-30 15    llama        
+28 Jonah 2017-08-30 15.5  turkey       
+29 Jonah 2017-08-30 16    berry        
+30 Jonah 2017-08-30 16.5  apple        
+31 Jonah 2017-08-30 17    oh no        
+32 Jonah 2017-08-30 17.5  go           
+33 Jonah 2017-08-30 18    car          
+34 Jonah 2017-08-30 18.5  that         
+35 Jonah 2017-08-30 19    more         
+36 Jonah 2017-08-30 19.5  peacock      
+37 Jonah 2017-08-30 20    cup          
+38 Jonah 2017-08-30 20.5  hide         
+39 Jonah 2017-08-30 21    too          
+40 Jonah 2017-08-30 21.5  blanket      
+41 Jonah 2017-08-30 22    peanut butter
+42 Jonah 2017-08-30 22.5  running      
+43 Jonah 2017-08-30 23    empty        
+44 Jonah 2017-08-30 23.5  that one     
+45 Jonah 2017-08-30 24    sandal       
+46 Jonah 2017-08-30 12    bye bye      
+47 Jonah 2017-08-30 15.5  beep         
+48 Jonah 2017-08-30 16    hi           
+49 Jonah 2017-08-30 16.5  box          
+50 Jonah 2017-08-30 17    night-night  
+51 Jonah 2017-08-30 17.5  jacket       
+52 Jonah 2017-08-30 18    dinosaur     
+53 Jonah 2017-08-30 18.5  wow          
+54 Jonah 2017-08-30 19    snack/food   
+55 Jonah 2017-08-30 19.5  wash         
+56 Jonah 2017-08-30 20    stroller     
+57 Jonah 2017-08-30 20.5  shark        
+58 Jonah 2017-08-30 21    grandma      
+59 Jonah 2017-08-30 21.5  face         
+60 Jonah 2017-08-30 22    lemon        
+61 Jonah 2017-08-30 22.5  potty        
+62 Jonah 2017-08-30 23    the end      
+63 Jonah 2017-08-30 23.5  over there   
+64 Jonah 2017-08-30 24    make         
+65 Jonah 2017-08-30 16    diaper       
+# … with 375 more rows
+```
+]
+
 &lt;style&gt;
 .panel1-pivotlong-rotate {
   color: black;
-  width: 87.1111111111111%;
+  width: 91.875%;
   hight: 32%;
   float: none;
   padding-left: 1%;
@@ -2174,7 +2263,7 @@ ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
 }
 .panel2-pivotlong-rotate {
   color: black;
-  width: 10.8888888888889%;
+  width: 6.125%;
   hight: 32%;
   float: none;
   padding-left: 1%;
@@ -2193,6 +2282,8 @@ ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
 
 
 
+
+
 ---
 # Types of untidy data: Multiple variables in one column
 
@@ -2200,9 +2291,7 @@ ds &lt;- read_csv('data_cleaned/vocab_annoying_headers.csv') %&gt;%
 - No meaningful summary of “value”
 
 ```r
-ds &lt;- read_delim(list.files(path = "data_headers", full.names = T),
-      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename")
-ds
+print(ds)
 ```
 
 ```
@@ -2221,16 +2310,14 @@ ds
 10 data_headers/6191_2.txt Sex         male 
 # … with 74 more rows
 ```
-
 ---
 #Solution: tidyr's `pivot_wider()`
 
 
 ```r
-ds &lt;- read_delim(list.files(path = "data_headers", full.names = T),
-      col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7,
-      id = "filename")
-ds &lt;- ds %&gt;% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+ds &lt;- ds %&gt;% pivot_wider(id_cols = "filename", 
+                         names_from = "field", 
+                         values_from = "value")
 ds
 ```
 
@@ -2409,12 +2496,12 @@ star_wars_combined
 # A tibble: 6 × 14
   name    height  mass hair_color skin_color   eye_color birth_year sex   gender
   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-1 Arvel …     NA    NA brown      fair         brown             NA male  mascu…
-2 Beru W…    165    75 brown      light        blue              47 fema… femin…
-3 Cordé      157    NA brown      light        brown             NA fema… femin…
-4 Jango …    183    79 black      tan          brown             66 male  mascu…
-5 C-3PO      167    75 &lt;NA&gt;       gold         yellow           112 none  mascu…
-6 Zam We…    168    55 blonde     fair, green… yellow            NA fema… femin…
+1 Zam We…    168    55 blonde     fair, green… yellow          NA   fema… femin…
+2 Jocast…    167    NA white      fair         blue            NA   fema… femin…
+3 R4-P17      96    NA none       silver, red  red, blue       NA   none  femin…
+4 IG-88      200   140 none       metal        red             15   none  mascu…
+5 Taun We    213    NA none       grey         black           NA   fema… femin…
+6 Anakin…    188    84 blond      fair         blue            41.9 male  mascu…
 # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
@@ -2543,16 +2630,16 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 100 × 12
    filename       Participant Age   Sex   Order FirstSpeed Block speed trial_num
    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 data_headers/… 6191        25    male  1     4          3     4             1
- 2 data_headers/… 6191        25    male  1     4          3     4             2
- 3 data_headers/… 6191        25    male  1     4          3     4             3
- 4 data_headers/… 6191        25    male  1     4          3     4             4
- 5 data_headers/… 6191        25    male  1     4          3     4             5
- 6 data_headers/… 6191        25    male  1     4          3     4             6
- 7 data_headers/… 6191        25    male  1     4          3     4             7
- 8 data_headers/… 6191        25    male  1     4          3     4             8
- 9 data_headers/… 6191        25    male  1     4          3     4             9
-10 data_headers/… 6191        25    male  1     4          3     4            10
+ 1 data_headers/… 6191        25    male  1     4          5     4             1
+ 2 data_headers/… 6191        25    male  1     4          5     4             2
+ 3 data_headers/… 6191        25    male  1     4          5     4             3
+ 4 data_headers/… 6191        25    male  1     4          5     4             4
+ 5 data_headers/… 6191        25    male  1     4          5     4             5
+ 6 data_headers/… 6191        25    male  1     4          5     4             6
+ 7 data_headers/… 6191        25    male  1     4          5     4             7
+ 8 data_headers/… 6191        25    male  1     4          5     4             8
+ 9 data_headers/… 6191        25    male  1     4          5     4             9
+10 data_headers/… 6191        25    male  1     4          5     4            10
 # … with 90 more rows, and 3 more variables: speed_actual &lt;chr&gt;,
 #   speed_resp &lt;chr&gt;, correct &lt;lgl&gt;
 ```
@@ -2579,10 +2666,10 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
   filename     trial_num speed_actual speed_resp correct Participant Age   Sex  
   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
 1 data_header…        19 slo          slower     TRUE    6192        21    male 
-2 data_header…         5 slo          faster     FALSE   6192        21    male 
-3 data_header…         5 slo          slower     TRUE    6191        25    male 
-4 data_header…        13 fas          slower     FALSE   6192        21    male 
-5 data_header…        10 slo          slower     TRUE    6192        21    male 
+2 data_header…         6 slo          slower     TRUE    6192        21    male 
+3 data_header…         7 fas          faster     TRUE    6191        25    male 
+4 data_header…        14 slo          slower     TRUE    6192        21    male 
+5 data_header…        14 fas          faster     TRUE    6191        25    male 
 # … with 4 more variables: Order &lt;chr&gt;, FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;,
 #   speed &lt;chr&gt;
 ```
