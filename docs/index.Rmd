@@ -47,7 +47,7 @@ library(icons) #https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free
   * Strings
   * Factors
   * Dates
-- Tidy data
+- Tidying data
   * Pivoting from/to wide/long format
   * Binding and joining data
  
@@ -149,6 +149,38 @@ model$coefficients
 ```
 
 ---
+# Character data (strings)
+
+- At minimum, working with characters is needed to deal with file paths
+
+- Understanding how to construct and format strings can help you avoid hard-coding things like graph labels and output tables
+
+- Learning how to wrangle strings and exploit patterns helps write more efficient code (e.g., selecting and mutating with `contains()`, `starts_with()`, etc.)
+
+- The `stringr` package has a suite of helper functions for common string operations
+
+```{r, include = F}
+ds <- read_csv('data_cleaned/vocab_annoying_headers.csv') %>% 
+  mutate(id = "Jonah", dob = as.Date("2017-08-30"), .before = "age_12")
+ds <- ds %>% pivot_longer(-(id:dob), names_to = "age", values_to = "word", values_drop_na = T, names_prefix = "age_") %>%
+  select(-id, -dob)
+```
+
+---
+# Jonah's first words
+```{r}
+ds$word
+```
+
+---
+# Jonah's first words
+```{r}
+ds %>% mutate(word_len = str_length(word), 
+              has_b = str_detect(word, "b"), 
+              num_b = str_count(word, "b"))
+```
+
+---
 # Factors represent categories
 ```{r}
 x <- c(1, 1, 2, 3, 1, 4)
@@ -195,15 +227,6 @@ fct_count(factor(ds$eye_f, levels = c("red", "brown", "blue"))) #ROTATE
 ```
 
 ---
-#Why do data need to be tidied?
-
-- Data files are often created without the foresight of how they will be read by computers
-- Creators prioritize making things human-readable at the expense of making data machine-readable
-- Tidy data makes programming more convenient
-  * Analysis and graphing functions in R (e.g., lm, lmer, ggplot) expect data in long format
-- You may need to switch formats to fit data to different requirements or to output data for publication (tables)
-
----
 #Tidy data (Wickham, 2014)
 
 - Each variable is a column
@@ -212,6 +235,15 @@ fct_count(factor(ds$eye_f, levels = c("red", "brown", "blue"))) #ROTATE
   * Observation means unit for which all variables are measured (e.g., person, session, trial)
 - Each type of observational unit is a separate table
   * Participant questionnaire vs. trial-by-trial outcomes
+
+---
+#Why do data need to be tidied?
+
+- Data files are often created without the foresight of how they will be read by computers
+- Creators prioritize making things human-readable at the expense of making data machine-readable
+- Tidy data makes programming more convenient
+  * Analysis and graphing functions in R (e.g., lm, lmer, ggplot) expect data in long format
+- You may need to switch formats to fit data to different requirements or to output data for publication (tables)
 
 ---
 #Types of un-tidy data: Column names are variables
