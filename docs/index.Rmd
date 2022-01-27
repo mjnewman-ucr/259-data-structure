@@ -153,6 +153,8 @@ model$coefficients
 
 - At minimum, working with characters is needed to deal with file paths
 
+- String functions let you clean up messy text input
+
 - Understanding how to construct and format strings can help you avoid hard-coding things like graph labels and output tables
 
 - Learning how to wrangle strings and exploit patterns helps write more efficient code (e.g., selecting and mutating with `contains()`, `starts_with()`, etc.)
@@ -173,11 +175,30 @@ ds$word
 ```
 
 ---
-# Jonah's first words
+# Length, containing strings, counting strings
 ```{r}
 ds %>% mutate(word_len = str_length(word), 
               has_b = str_detect(word, "b"), 
               num_b = str_count(word, "b"))
+```
+---
+
+`r chunk_reveal("patterns", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Matching patterns")`
+```{r patterns, include = T}
+ds %>% mutate(word_cleaned = str_remove_all(word, "[:punct:]")) #ROTATE
+ds %>% mutate(word_cleaned = str_replace_all(word, "[:punct:]"," ")) #ROTATE
+ds %>% mutate(vowel_count = str_count(word, "[aeiou]")) #ROTATE
+ds %>% mutate(is_three_letter = str_detect(word, "[:alnum:{3}]")) #ROTATE
+```
+---
+
+`r chunk_reveal("morepatterns", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Matching patterns")`
+```{r morepatterns, include = T}
+fnames <- list.files(path="data_raw", full.names = T)
+str_split(fnames, "/") #ROTATE
+str_replace_all(fnames, "data_raw/|.csv|vocab","") #ROTATE
+str_extract_all(fnames, "\\d{2}.\\d{1}|\\d{2}","") #ROTATE
+
 ```
 
 ---
