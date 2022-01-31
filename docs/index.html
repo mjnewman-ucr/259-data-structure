@@ -45,7 +45,7 @@ class: center, middle, inverse, title-slide
 &lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; Follow along from the [Github repo](https://github.com/psych-259-data-science-2022/259-data-structure)
 ]
 
-.footnote[.small[.bold[Last updated: 2022-01-27]]]
+.footnote[.small[.bold[Last updated: 2022-01-31]]]
 
 ---
 # Common data types in R
@@ -1686,6 +1686,25 @@ count: false
 
 
 
+
+---
+
+```r
+fnames &lt;- list.files(path="data_raw", full.names = T)
+print(fnames)
+```
+
+```
+ [1] "data_raw/vocab12.5.csv" "data_raw/vocab12.csv"   "data_raw/vocab13.5.csv"
+ [4] "data_raw/vocab14.5.csv" "data_raw/vocab14.csv"   "data_raw/vocab15.5.csv"
+ [7] "data_raw/vocab15.csv"   "data_raw/vocab16.5.csv" "data_raw/vocab16.csv"  
+[10] "data_raw/vocab17.5.csv" "data_raw/vocab17.csv"   "data_raw/vocab18.5.csv"
+[13] "data_raw/vocab18.csv"   "data_raw/vocab19.5.csv" "data_raw/vocab19.csv"  
+[16] "data_raw/vocab20.5.csv" "data_raw/vocab20.csv"   "data_raw/vocab21.5.csv"
+[19] "data_raw/vocab21.csv"   "data_raw/vocab22.5.csv" "data_raw/vocab22.csv"  
+[22] "data_raw/vocab23.5.csv" "data_raw/vocab23.csv"   "data_raw/vocab24.csv"  
+```
+
 ---
 
 count: false
@@ -1880,49 +1899,6 @@ fnames &lt;- list.files(path="data_raw", full.names = T)
 [22,] ".csv"
 [23,] ".csv"
 [24,] ".csv"
-```
-]
-
----
-count: false
- 
-# Matching patterns
-.panel1-morepatterns-rotate[
-
-```r
-fnames &lt;- list.files(path="data_raw", full.names = T)
-*str_extract_all(fnames, "(?&lt;=\\/)[:alpha:]+", simplify = T)
-```
-]
- 
-.panel2-morepatterns-rotate[
-
-```
-      [,1]   
- [1,] "vocab"
- [2,] "vocab"
- [3,] "vocab"
- [4,] "vocab"
- [5,] "vocab"
- [6,] "vocab"
- [7,] "vocab"
- [8,] "vocab"
- [9,] "vocab"
-[10,] "vocab"
-[11,] "vocab"
-[12,] "vocab"
-[13,] "vocab"
-[14,] "vocab"
-[15,] "vocab"
-[16,] "vocab"
-[17,] "vocab"
-[18,] "vocab"
-[19,] "vocab"
-[20,] "vocab"
-[21,] "vocab"
-[22,] "vocab"
-[23,] "vocab"
-[24,] "vocab"
 ```
 ]
 
@@ -2501,7 +2477,7 @@ age &lt;- seq(from = 12, to = 24, by = .5)
 .panel2-combiningstrings-rotate[
 
 ```
-Today's date is 2022-01-27 and the time is 2022-01-27 11:19:29
+Today's date is 2022-01-31 and the time is 2022-01-31 12:42:13
 ```
 ]
 
@@ -2621,10 +2597,6 @@ Here is pi to 6 digits: 3.14159
 - Lots of options within the `lubridate` package
 
 
----
-class: center, middle
-background-image: url("lubridate.png")
-background-size: contain
 
 ---
 count: false
@@ -4565,14 +4537,14 @@ star_wars_combined
 
 ```
 # A tibble: 6 × 14
-  name     height  mass hair_color skin_color  eye_color birth_year sex   gender
-  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-1 Biggs D…    183    84 black      light       brown             24 male  mascu…
-2 C-3PO       167    75 &lt;NA&gt;       gold        yellow           112 none  mascu…
-3 Mas Ame…    196    NA none       blue        blue              NA male  mascu…
-4 Taun We     213    NA none       grey        black             NA fema… femin…
-5 Nute Gu…    191    90 none       mottled gr… red               NA male  mascu…
-6 Chewbac…    228   112 brown      unknown     blue             200 male  mascu…
+  name    height  mass hair_color skin_color  eye_color birth_year sex    gender
+  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+1 Tarfful    234   136 brown      brown       blue              NA male   mascu…
+2 Jabba …    175  1358 &lt;NA&gt;       green-tan,… orange           600 herma… mascu…
+3 Bib Fo…    180    NA none       pale        pink              NA male   mascu…
+4 R4-P17      96    NA none       silver, red red, blue         NA none   femin…
+5 Shaak …    178    57 none       red, blue,… black             NA female femin…
+6 Lando …    177    79 black      dark        brown             31 male   mascu…
 # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
@@ -4701,16 +4673,16 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 100 × 12
    filename       Participant Age   Sex   Order FirstSpeed Block speed trial_num
    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
- 1 data_headers/… 6192        21    male  2     4          1     4             1
- 2 data_headers/… 6192        21    male  2     4          1     4             2
- 3 data_headers/… 6192        21    male  2     4          1     4             3
- 4 data_headers/… 6192        21    male  2     4          1     4             4
- 5 data_headers/… 6192        21    male  2     4          1     4             5
- 6 data_headers/… 6192        21    male  2     4          1     4             6
- 7 data_headers/… 6192        21    male  2     4          1     4             7
- 8 data_headers/… 6192        21    male  2     4          1     4             8
- 9 data_headers/… 6192        21    male  2     4          1     4             9
-10 data_headers/… 6192        21    male  2     4          1     4            10
+ 1 data_headers/… 6191        25    male  1     4          2     7             1
+ 2 data_headers/… 6191        25    male  1     4          2     7             2
+ 3 data_headers/… 6191        25    male  1     4          2     7             3
+ 4 data_headers/… 6191        25    male  1     4          2     7             4
+ 5 data_headers/… 6191        25    male  1     4          2     7             5
+ 6 data_headers/… 6191        25    male  1     4          2     7             6
+ 7 data_headers/… 6191        25    male  1     4          2     7             7
+ 8 data_headers/… 6191        25    male  1     4          2     7             8
+ 9 data_headers/… 6191        25    male  1     4          2     7             9
+10 data_headers/… 6191        25    male  1     4          2     7            10
 # … with 90 more rows, and 3 more variables: speed_actual &lt;chr&gt;,
 #   speed_resp &lt;chr&gt;, correct &lt;lgl&gt;
 ```
@@ -4736,11 +4708,11 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 5 × 12
   filename     trial_num speed_actual speed_resp correct Participant Age   Sex  
   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
-1 data_header…        11 slo          slower     TRUE    6192        21    male 
-2 data_header…         5 slo          slower     TRUE    6192        21    male 
-3 data_header…        19 slo          slower     TRUE    6191        25    male 
-4 data_header…         2 fas          faster     TRUE    6192        21    male 
-5 data_header…        16 fas          faster     TRUE    6191        25    male 
+1 data_header…         4 fas          slower     FALSE   6191        25    male 
+2 data_header…        15 fas          faster     TRUE    6192        21    male 
+3 data_header…         9 slo          slower     TRUE    6192        21    male 
+4 data_header…        11 slo          slower     TRUE    6191        25    male 
+5 data_header…         8 fas          faster     TRUE    6192        21    male 
 # … with 4 more variables: Order &lt;chr&gt;, FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;,
 #   speed &lt;chr&gt;
 ```

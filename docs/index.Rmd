@@ -201,6 +201,13 @@ ds %>% mutate(vowel_count = str_count(word, "[aeiou]")) #ROTATE
 ds %>% mutate(is_three_letter = str_detect(word, "[:alnum:{3}]")) #ROTATE
 
 ```
+
+---
+```{r}
+fnames <- list.files(path="data_raw", full.names = T)
+print(fnames)
+```
+
 ---
 
 `r chunk_reveal("morepatterns", break_type = "rotate", float = "none", widths = c(12, 1), title = "# Matching patterns")`
@@ -211,7 +218,6 @@ str_split(fnames, "/") #ROTATE
 str_replace_all(fnames, "data_raw/|.csv|vocab","") #ROTATE
 str_extract_all(fnames, "\\d{2}.\\d{1}|\\d{2}", simplify = T) #ROTATE
 str_extract_all(fnames, "\\.[:alpha:]{1,4}", simplify = T) #ROTATE
-str_extract_all(fnames, "(?<=\\/)[:alpha:]+", simplify = T) #ROTATE
 str_extract_all(ds$word, boundary("word"), simplify = T) #ROTATE
 
 ```
