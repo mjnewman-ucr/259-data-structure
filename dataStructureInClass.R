@@ -172,7 +172,7 @@ ds %>% print(n = 25)
 ds %>% pivot_longer(-(id:dob), names_to = "age", values_to = "word") 
 ds %>% pivot_longer(-(id:dob), names_to = "age", 
                     names_prefix = "age_", values_to = "word")
-ds %>% pivot_longer(-(id:dob), names_to = "age", 
+ds <- ds %>% pivot_longer(-(id:dob), names_to = "age", 
                     values_to = "word", values_drop_na = T, names_prefix = "age_")
 
 
@@ -219,7 +219,9 @@ star_wars_combined
 # Joining by key value
 
 fnames <- list.files(path = "data_headers", full.names = T)
-header <- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), delim = " ", n_max = 7, id = "filename") %>% pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
+header <- read_delim(fnames, col_names = c("field", "value"), col_types = c("cc"), 
+                     delim = " ", n_max = 7, id = "filename") %>% 
+  pivot_wider(id_cols = "filename", names_from = "field", values_from = "value")
 trials <- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_resp", "correct"), skip = 8, id = "filename")
 header 
 trials 
