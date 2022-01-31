@@ -228,7 +228,7 @@ str_extract_all(ds$word, boundary("word"), simplify = T) #ROTATE
 age <- seq(from = 12, to = 24, by = .5) 
 paste0("data_raw/vocab", age, ".csv") #ROTATE
 str_glue("data_raw/vocab{age}.csv") #ROTATE
-str_glue("Today's date is {today()} and the time is {now()}") #ROTATE
+str_glue("Today's date and time are {now()}") #ROTATE
 str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 3) #ROTATE
 str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 4) #ROTATE
 str_glue("Here is pi to {x} digits: {format(pi, digits = x)}", x = 5) #ROTATE
@@ -275,18 +275,14 @@ time_length(as.period(interval(mdy("05-27-1983"), mdy("05-28-2022"))), "years")
 ```
 
 ---
-`r chunk_reveal("age", break_type = "auto", widths = c(1, 1), title = "# Age math")`
+`r chunk_reveal("age", break_type = "auto", float = "none", widths = c(12, 1), title = "# Age math")`
 
 ```{r age, include = FALSE}
 birth_date <- ymd("2001-09-01", "2000-09-01")
 test_date <- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
 as.period(interval(start = birth_date, end = test_date), unit = "years")
-
-test_date2 <- test_date - years(1) + days(7)
-test_date2
-(test_date2-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date2), unit = "years")
+test_date - years(1) + days(7)
 ```
 ---
 `r chunk_reveal("tz", break_type = "auto", widths = c(2, 1), title = "# Time Zones")`
