@@ -2470,14 +2470,14 @@ count: false
 
 ```r
 age &lt;- seq(from = 12, to = 24, by = .5)
-*str_glue("Today's date is {today()} and the time is {now()}")
+*str_glue("Today's date and time are {now()}")
 ```
 ]
  
 .panel2-combiningstrings-rotate[
 
 ```
-Today's date is 2022-01-31 and the time is 2022-01-31 12:42:13
+Today's date and time are 2022-01-31 12:52:45
 ```
 ]
 
@@ -2855,37 +2855,7 @@ birth_date &lt;- ymd("2001-09-01", "2000-09-01")
 test_date &lt;- ymd("2020-09-01", "2019-09-01")
 (test_date-birth_date)/365.25
 as.period(interval(start = birth_date, end = test_date), unit = "years")
-
-*test_date2 &lt;- test_date - years(1) + days(7)
-```
-]
- 
-.panel2-age-auto[
-
-```
-Time differences in days
-[1] 19.00068 18.99795
-```
-
-```
-[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
-```
-]
-
----
-count: false
- 
-# Age math
-.panel1-age-auto[
-
-```r
-birth_date &lt;- ymd("2001-09-01", "2000-09-01")
-test_date &lt;- ymd("2020-09-01", "2019-09-01")
-(test_date-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date), unit = "years")
-
-test_date2 &lt;- test_date - years(1) + days(7)
-*test_date2
+*test_date - years(1) + days(7)
 ```
 ]
  
@@ -2902,106 +2872,23 @@ Time differences in days
 
 ```
 [1] "2019-09-08" "2018-09-08"
-```
-]
-
----
-count: false
- 
-# Age math
-.panel1-age-auto[
-
-```r
-birth_date &lt;- ymd("2001-09-01", "2000-09-01")
-test_date &lt;- ymd("2020-09-01", "2019-09-01")
-(test_date-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date), unit = "years")
-
-test_date2 &lt;- test_date - years(1) + days(7)
-test_date2
-*(test_date2-birth_date)/365.25
-```
-]
- 
-.panel2-age-auto[
-
-```
-Time differences in days
-[1] 19.00068 18.99795
-```
-
-```
-[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
-```
-
-```
-[1] "2019-09-08" "2018-09-08"
-```
-
-```
-Time differences in days
-[1] 18.0178 18.0178
-```
-]
-
----
-count: false
- 
-# Age math
-.panel1-age-auto[
-
-```r
-birth_date &lt;- ymd("2001-09-01", "2000-09-01")
-test_date &lt;- ymd("2020-09-01", "2019-09-01")
-(test_date-birth_date)/365.25
-as.period(interval(start = birth_date, end = test_date), unit = "years")
-
-test_date2 &lt;- test_date - years(1) + days(7)
-test_date2
-(test_date2-birth_date)/365.25
-*as.period(interval(start = birth_date, end = test_date2), unit = "years")
-```
-]
- 
-.panel2-age-auto[
-
-```
-Time differences in days
-[1] 19.00068 18.99795
-```
-
-```
-[1] "19y 0m 0d 0H 0M 0S" "19y 0m 0d 0H 0M 0S"
-```
-
-```
-[1] "2019-09-08" "2018-09-08"
-```
-
-```
-Time differences in days
-[1] 18.0178 18.0178
-```
-
-```
-[1] "18y 0m 7d 0H 0M 0S" "18y 0m 7d 0H 0M 0S"
 ```
 ]
 
 &lt;style&gt;
 .panel1-age-auto {
   color: black;
-  width: 49%;
+  width: 90.4615384615385%;
   hight: 32%;
-  float: left;
+  float: none;
   padding-left: 1%;
   font-size: 80%
 }
 .panel2-age-auto {
   color: black;
-  width: 49%;
+  width: 7.53846153846154%;
   hight: 32%;
-  float: left;
+  float: none;
   padding-left: 1%;
   font-size: 80%
 }
@@ -3009,7 +2896,7 @@ Time differences in days
   color: black;
   width: NA%;
   hight: 33%;
-  float: left;
+  float: none;
   padding-left: 1%;
   font-size: 80%
 }
@@ -4537,14 +4424,14 @@ star_wars_combined
 
 ```
 # A tibble: 6 × 14
-  name    height  mass hair_color skin_color  eye_color birth_year sex    gender
-  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
-1 Tarfful    234   136 brown      brown       blue              NA male   mascu…
-2 Jabba …    175  1358 &lt;NA&gt;       green-tan,… orange           600 herma… mascu…
-3 Bib Fo…    180    NA none       pale        pink              NA male   mascu…
-4 R4-P17      96    NA none       silver, red red, blue         NA none   femin…
-5 Shaak …    178    57 none       red, blue,… black             NA female femin…
-6 Lando …    177    79 black      dark        brown             31 male   mascu…
+  name     height  mass hair_color skin_color  eye_color birth_year sex   gender
+  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Bail Pr…    191    NA black      tan         brown             67 male  mascu…
+2 Ben Qua…    163    65 none       grey, gree… orange            NA male  mascu…
+3 Sly Moo…    178    48 none       pale        white             NA &lt;NA&gt;  &lt;NA&gt;  
+4 Tion Me…    206    80 none       grey        black             NA male  mascu…
+5 Mas Ame…    196    NA none       blue        blue              NA male  mascu…
+6 Sebulba     112    40 none       grey, red   orange            NA male  mascu…
 # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
@@ -4708,11 +4595,11 @@ trials &lt;- read_tsv(fnames, col_names = c("trial_num", "speed_actual", "speed_
 # A tibble: 5 × 12
   filename     trial_num speed_actual speed_resp correct Participant Age   Sex  
   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;
-1 data_header…         4 fas          slower     FALSE   6191        25    male 
-2 data_header…        15 fas          faster     TRUE    6192        21    male 
-3 data_header…         9 slo          slower     TRUE    6192        21    male 
-4 data_header…        11 slo          slower     TRUE    6191        25    male 
-5 data_header…         8 fas          faster     TRUE    6192        21    male 
+1 data_header…        11 fas          faster     TRUE    6192        21    male 
+2 data_header…        12 slo          faster     FALSE   6192        21    male 
+3 data_header…        16 fas          slower     FALSE   6192        21    male 
+4 data_header…         2 slo          slower     TRUE    6192        21    male 
+5 data_header…         1 slo          slower     TRUE    6191        25    male 
 # … with 4 more variables: Order &lt;chr&gt;, FirstSpeed &lt;chr&gt;, Block &lt;chr&gt;,
 #   speed &lt;chr&gt;
 ```
